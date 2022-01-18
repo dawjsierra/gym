@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Member;
 use Illuminate\Http\Request;
 
 class MemberController extends Controller
@@ -13,7 +14,7 @@ class MemberController extends Controller
      */
     public function index()
     {
-        echo "INDEX DE MEMBER";
+        //
     }
 
     /**
@@ -23,7 +24,7 @@ class MemberController extends Controller
      */
     public function create()
     {
-        echo "CREAR MEMB";
+        //
     }
 
     /**
@@ -34,51 +35,51 @@ class MemberController extends Controller
      */
     public function store(Request $request)
     {
-        echo "STORE MEMB";
+        //
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
+     * @param  \App\Models\Member  $member
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Member $member)
     {
-        echo "SHOW MEMB";
+        //
     }
 
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int  $id
+     * @param  \App\Models\Member  $member
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Member $member)
     {
-        echo "EDIT MEMB";
+        //
     }
 
     /**
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
+     * @param  \App\Models\Member  $member
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, Member $member)
     {
-        echo "UPDAT MEMB";
+        //
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
+     * @param  \App\Models\Member  $member
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Member $member)
     {
-        echo "DESTROY MEMB";
+        //
     }
 }

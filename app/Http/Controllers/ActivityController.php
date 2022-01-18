@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Activity;
 use Illuminate\Http\Request;
 
 class ActivityController extends Controller
@@ -13,7 +14,7 @@ class ActivityController extends Controller
      */
     public function index()
     {
-        echo "INDEX DE ACTIVITY";
+        //
     }
 
     /**
@@ -23,7 +24,7 @@ class ActivityController extends Controller
      */
     public function create()
     {
-        echo "CREAR ACTIV";
+        //
     }
 
     /**
@@ -34,51 +35,51 @@ class ActivityController extends Controller
      */
     public function store(Request $request)
     {
-        echo "STORE ACTIV";
+        //
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
+     * @param  \App\Models\Activity  $activity
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Activity $activity)
     {
-        echo "SHOW ACTIV";
+        //
     }
 
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int  $id
+     * @param  \App\Models\Activity  $activity
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Activity $activity)
     {
-        echo "EDIT ACTIV";
+        //
     }
 
     /**
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
+     * @param  \App\Models\Activity  $activity
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, Activity $activity)
     {
-        echo "UPDAT ACTIV";
+        //
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
+     * @param  \App\Models\Activity  $activity
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Activity $activity)
     {
-        echo "DESTROY ACTIV";
+        //
     }
 }
