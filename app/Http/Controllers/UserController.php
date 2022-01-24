@@ -3,9 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\Activity;
+use App\Models\User;
 
-class ActivityController extends Controller
+class UserController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -14,8 +14,9 @@ class ActivityController extends Controller
      */
     public function index()
     {
-        $activities = Activity::all();
-        return view('activities.index',['activities' => $activities]);
+        $users = User::all();
+        return view('users.index',['users' => $users]);
+        
     }
 
     /**
@@ -25,7 +26,7 @@ class ActivityController extends Controller
      */
     public function create()
     {
-        return view('activities.create');
+        return view('users.create');
     }
 
     /**
@@ -34,10 +35,10 @@ class ActivityController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Activity $activity)
+    public function store(User $user)
     {
-        $activity = Activity::all();
-        return redirect('/activities');
+        $user = User::all();
+        return redirect('/users');
     }
 
     /**
@@ -57,9 +58,9 @@ class ActivityController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit(Activity $activity)
+    public function edit(User $user)
     {
-        return view('activities.edit',['activity' => $activity]);
+        return view('users.edit',['user' => $user]);
     }
 
     /**
@@ -69,11 +70,11 @@ class ActivityController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Activity $activity)
+    public function update(Request $request, User $user)
     {
-        $activity -> fill($request->all());
-        $activity -> save();
-        return redirect('/activities');
+        $user -> fill($request->all());
+        $user -> save();
+        return redirect('/users');
     }
 
     /**

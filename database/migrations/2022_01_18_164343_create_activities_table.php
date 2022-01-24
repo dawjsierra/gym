@@ -16,9 +16,7 @@ class CreateActivitiesTable extends Migration
         Schema::create('activities', function (Blueprint $table) {
             $table->id();
             $table->string('nomActividad')->unique();
-            $table->string('dias');
-            $table->string('nSesiones');
-            $table->string('horario');
+            $table->string('descripcion');
             $table->string('duracion');
             $table->string('maxParticipantes');
             $table->timestamps();

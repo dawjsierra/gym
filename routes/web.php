@@ -1,7 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\MemberController;
+use App\Http\Controllers\UserController;
 use App\Http\Controllers\ActivityController;
 /*
 |--------------------------------------------------------------------------
@@ -18,14 +18,14 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::resource('member', MemberController::class);
-// Route::get('member', [MemberController::class, 'index']);
-// Route::get('member/create', [MemberController::class, 'create']);
-// Route::get('member/{id}', [MemberController::class, 'show']);
-// Route::post('member', [MemberController::class, 'store']);
-// Route::get('member/{id}/edit', [MemberController::class, 'edit']);
-// Route::put('member/{id}', [MemberController::class, 'update']);
-// Route::delete('member/{id}', [MemberController::class, 'destroy']);
+Route::resource('user', UserController::class);
+//Route::get('user', [UserController::class, 'index']);
+// Route::get('user/create', [UserController::class, 'create']);
+// Route::get('user/{id}', [UserController::class, 'show']);
+// Route::post('user', [UserController::class, 'store']);
+// Route::get('user/{id}/edit', [UserController::class, 'edit']);
+// Route::put('user/{id}', [UserController::class, 'update']);
+// Route::delete('user/{id}', [UserController::class, 'destroy']);
 
 Route::resource('activity', ActivityController::class);
 // Route::get('activity', [ActivityController::class, 'index']);
@@ -35,3 +35,6 @@ Route::resource('activity', ActivityController::class);
 // Route::get('activity/{id}/edit', [ActivityController::class, 'edit']);
 // Route::put('activity/{id}', [ActivityController::class, 'update']);
 // Route::delete('activity/{id}', [ActivityController::class, 'destroy']);
+Auth::routes();
+
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

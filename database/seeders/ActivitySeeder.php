@@ -18,11 +18,16 @@ class ActivitySeeder extends Seeder
     {
         Activity::create([
             'nomActividad' => 'ciclo',
-            'dias' => 'l,x,v',
-            'nSesiones' => '3',
-            'horario' => '10:00 - 10:55',
+            'descripcion' => 'clase de bicicletamiento',
             'duracion' => '55',
             'maxParticipantes' => '22'
+        ]);
+
+        Activity::create([
+            'nomActividad' => 'yoga',
+            'descripcion' => 'clase de relajacion',
+            'duracion' => '55',
+            'maxParticipantes' => '12'
         ]);
     }
 }
