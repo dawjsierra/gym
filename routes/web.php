@@ -3,6 +3,8 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\ActivityController;
+use App\Http\Controllers\SesionController;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -35,6 +37,11 @@ Route::resource('activity', ActivityController::class);
 // Route::get('activity/{id}/edit', [ActivityController::class, 'edit']);
 // Route::put('activity/{id}', [ActivityController::class, 'update']);
 // Route::delete('activity/{id}', [ActivityController::class, 'destroy']);
+
+Route::resource('sesion', SesionController::class);
+
 Auth::routes();
+
+
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

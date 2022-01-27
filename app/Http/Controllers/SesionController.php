@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Sesion;
 use Illuminate\Http\Request;
 
+
 class SesionController extends Controller
 {
     /**
@@ -14,7 +15,8 @@ class SesionController extends Controller
      */
     public function index()
     {
-        //
+        $sesion = Sesion::all();
+        return view('activities.index',['activities' => $sesion]);
     }
 
     /**
@@ -24,7 +26,7 @@ class SesionController extends Controller
      */
     public function create()
     {
-        //
+        return view('sesions.create');
     }
 
     /**
@@ -33,9 +35,10 @@ class SesionController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(Sesion $sesion)
     {
-        //
+        $sesion = Sesion::all();
+        return redirect('/sesions');
     }
 
     /**
@@ -57,7 +60,7 @@ class SesionController extends Controller
      */
     public function edit(Sesion $sesion)
     {
-        //
+        return view('sesions.edit',['sesion' => $sesion]);
     }
 
     /**
@@ -69,7 +72,9 @@ class SesionController extends Controller
      */
     public function update(Request $request, Sesion $sesion)
     {
-        //
+        $sesion -> fill($request->all());
+        $sesion -> save();
+        return redirect('/sesions');
     }
 
     /**
