@@ -1,12 +1,39 @@
-<!DOCTYPE html>
-<html>
-    <head>
-        <title>CREATE ACTIVITIES</title>
-        <meta charset="UTF-8">
-    </head>
-    
-    <body>
-        <h1>ACTIVITIES</h1>
-        <p>Pagina para crear actividades</p>
-    </body>
-</html>
+@extends('layouts.app')
+
+@section('content')
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+        <h1>Creación de actividades</h1>
+
+        <form action="/activities/create" method="post">
+        @csrf
+        <div>
+            <label for="nomActividad">Nombre de la actividad</label>
+            <input type="text" name="nomActividad"> 
+        </div>
+
+        <div>
+            <label for="descripcion">Descripcion</label>
+            <input type="text" name="descripcion"> 
+        </div>
+
+        <div>
+            <label for="duracion">Duracion</label>
+            <input type="text" name="duracion"> 
+        </div>
+
+        <div>
+            <label for="maxParticipantes">Numero máximo de participantes</label>
+            <input type="text" name="maxParticipantes"> 
+        </div>
+
+        <div>
+            <input type="submit" value="crear"> 
+        </div>        
+        </form>
+        </div>
+    </div>
+
+</div>
+@endsection

@@ -7,20 +7,30 @@
     <body>
         <h1>CREAR SESIONES</h1>
 
-        <form method="POST" action="/sesion/store">
-            <input type="checkbox" id="lunes" name="lunes" value="l">
+        <form method="POST" action="/sesion">
+        @csrf
+
+            <select name="actividad" id="actividad">
+                @foreach($activities as $activity)
+                    <option value="{{$activity->id}}">{{$activity->nomActividad}}</option>
+                @endforeach
+            </select>
+
+            <br/><hr><br/>
+
+            <input type="checkbox" id="lunes" name="dias[]" value="Monday">
             <label for="dia1">LUNES</label><br>
 
-            <input type="checkbox" id="martes" name="martes" value="m">
+            <input type="checkbox" id="martes" name="dias[]" value="Tuesday">
             <label for="dia2"> MARTES</label><br>
 
-            <input type="checkbox" id="miercoles" name="miercoles" value="x">
-            <label for="dia3"> MIERCOLES</label><br> 
+            <input type="checkbox" id="miercoles" name="dias[]" value="Wednesday">
+            <label for="dia2"> MIERCOLES</label><br>
 
-            <input type="checkbox" id="jueves" name="jueves" value="j">
+            <input type="checkbox" id="jueves" name="dias[]" value="Thursday">
             <label for="dia4"> JUEVES </label><br>
 
-            <input type="checkbox" id="viernes" name="viernes" value="v">
+            <input type="checkbox" id="viernes" name="dias[]" value="Friday">
             <label for="dia5"> VIERNES</label>
 
             <br/><hr><br/>
@@ -35,7 +45,11 @@
 
             <br/><hr><br/>
 
+            <label>DIa de inicio</label>
+            <input type="date" id="day" name="day"><br/>
 
+            <br/><hr><br/>
+            <input type="submit" value="CREAR">
         </form>
     </body>
 </html>
