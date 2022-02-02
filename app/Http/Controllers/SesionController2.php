@@ -100,7 +100,7 @@ class SesionController extends Controller
         // echo $fecha->minute;
         // echo $fecha->second;
 
-        // var_dump( $this->fill_month( $activity, $fechaInicio, $fechaFin, $arrDias ) );
+        var_dump( $this->fill_month( $activity, $fechaInicio, $fechaFin, $arrDias ) );
 
     }
 

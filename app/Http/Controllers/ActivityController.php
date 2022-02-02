@@ -36,8 +36,21 @@ class ActivityController extends Controller
      */
     public function store(Request $request)
     {
-        dd($request);
-        //$activity = Activity::all();
+        $activity = new Activity;
+        //dd($request);
+        $nombre = $request->nomActividad;
+        $duracion = $request->duracion;
+        $descripcion = $request->descripcion;
+        $maxParticipantes = $request->maxParticipantes;
+
+        $activity->nomActividad = $nombre;
+        $activity->duracion = $duracion;
+        $activity->maxParticipantes = $maxParticipantes;
+        $activity->descripcion = $descripcion;
+        $activity->save();
+        return view('activities.index');
+
+
         //return redirect('/activities');
     }
 
@@ -49,7 +62,7 @@ class ActivityController extends Controller
      */
     public function show($id)
     {
-        //
+        $activities = Activity::all();
     }
 
     /**

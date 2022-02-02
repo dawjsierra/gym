@@ -18,7 +18,7 @@ class SesionController extends Controller
     public function index()
     {
         $sesion = Sesion::all();
-        return view('activities.index',['activities' => $sesion]);
+        return view('sesions.index',['activities' => $sesion]);
     }
 
     /**
@@ -86,7 +86,7 @@ class SesionController extends Controller
 
         // $this->fill_month( $activity, $arrDias, $inicio, $fin ) ;
         $this->fill_month_NEW( $activity, $arrDias, $inicio, $fin ) ;
-        dd(Sesion::all());
+        //dd(Sesion::all());
       
         // return redirect('/sesions');
     }

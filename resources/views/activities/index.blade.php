@@ -6,11 +6,9 @@
         <div class="col-md-8">
 
 
-        <h1>Lista de estudios
-            <a href="/activities/create" class="btn btn-primary float-right">
-                Nuevo
-            </a>
-        </h1>
+        <h1>Lista de actividades</h1><br/>
+            <a href="/activities/create" class="btn btn-primary float-right">Nueva</a><br/>
+        
 
 
         <table class="table table-striped">
@@ -20,14 +18,15 @@
             <th>Duracion</th>
             <th>Nº Maximo participantes</th>
         </tr>
-        @forelse ($activities as $activities)
+        @forelse ($activities as $key => $activity)
         <tr>
-            <td>{{$activities->nomActividad}} </td>
-            <td>{{$activities->descripcion}} </td>
-            <td>{{$activities->duracion}} </td>
-            <td>{{$activities->maxParticipantes}} </td>
-            <td> <a class="btn btn-primary btn-sm" href="/activities/{{$activities->id}}">Ver</a></td>
-            <td> <a class="btn btn-primary btn-sm" href="/activities/{{$activities->id}}/edit">Editar</a></td>
+            <td>{{$activity->nomActividad}} </td>
+            <td>{{$activity->descripcion}} </td>
+            <td>{{$activity->duracion}} </td>
+            <td>{{$activity->maxParticipantes}} </td>
+            
+            <td> <a class="btn btn-primary btn-sm" href="/activities/{{$activity->id}}">Ver</a></td>
+            <td> <a class="btn btn-primary btn-sm" href="/activities/{{$activity->id}}/edit">Editar</a></td>
         </tr>
         @empty
         <tr>
