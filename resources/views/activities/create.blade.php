@@ -6,7 +6,7 @@
         <div class="col-md-8">
         <h1>Creación de actividades</h1>
 
-        <form action="/activities/create" method="post">
+        <form action="/activity" method="post">
         @csrf
         <div>
             <label for="nomActividad">Nombre de la actividad</label>
@@ -19,7 +19,7 @@
         </div>
 
         <div>
-            <label for="duracion">Duracion</label>
+            <label for="duracion">Duracion (minutos)</label>
             <input type="text" name="duracion"> 
         </div>
 

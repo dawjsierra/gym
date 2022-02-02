@@ -34,10 +34,11 @@ class ActivityController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Activity $activity)
+    public function store(Request $request)
     {
-        $activity = Activity::all();
-        return redirect('/activities');
+        dd($request);
+        //$activity = Activity::all();
+        //return redirect('/activities');
     }
 
     /**
