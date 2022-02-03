@@ -21,6 +21,10 @@ class SesionController extends Controller
         return view('sesions.index',['activities' => $sesion]);
     }
 
+    public function activity(){
+        return $this->belongsTo(Activity::class);
+    }
+
     /**
      * Show the form for creating a new resource.
      *

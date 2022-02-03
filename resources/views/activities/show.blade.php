@@ -6,28 +6,40 @@
     </head>
     
     <body>
-        <h1>ACTIVITIES</h1>
-        <table class="table table-striped">
+        <h1>ACTIVITY: {{$activity->nomActividad}}</h1>
+        <table class="table table-striped" border=1>
         <tr>
             <th>Nombre</th>
             <th>Descripcion</th>
             <th>Duracion</th>
             <th>Nº Maximo participantes</th>
         </tr>
-        @forelse ($activities as $key => $activity)
+        
         <tr>
             <td>{{$activity->nomActividad}} </td>
             <td>{{$activity->descripcion}} </td>
             <td>{{$activity->duracion}} </td>
             <td>{{$activity->maxParticipantes}} </td>
-            <td> <a class="btn btn-primary btn-sm" href="/activities/{{$activity->id}}">Ver</a></td>
-            <td> <a class="btn btn-primary btn-sm" href="/activities/{{$activity->id}}/edit">Editar</a></td>
         </tr>
-        @empty
+        
+        </table>
+
+        <h1>sesiones</h1>
+        <table class="table table-striped" border=1>
         <tr>
-            <td colspan="3">No hay estudios registrados</td>
+            <th>Nombre</th>
+            <th>Descripcion</th>
+            <th>Duracion</th>
+            <th>Nº Maximo participantes</th>
         </tr>
-        @endforelse
+        
+        <tr>
+            <td>{{$activity->nomActividad}} </td>
+            <td>{{$activity->descripcion}} </td>
+            <td>{{$activity->duracion}} </td>
+            <td>{{$activity->maxParticipantes}} </td>
+        </tr>
+        
         </table>
     </body>
 </html>

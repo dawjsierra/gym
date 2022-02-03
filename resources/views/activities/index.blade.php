@@ -25,8 +25,8 @@
             <td>{{$activity->duracion}} </td>
             <td>{{$activity->maxParticipantes}} </td>
             
-            <td> <a class="btn btn-primary btn-sm" href="/activities/{{$activity->id}}">Ver</a></td>
-            <td> <a class="btn btn-primary btn-sm" href="/activities/{{$activity->id}}/edit">Editar</a></td>
+            <td> <a class="btn btn-primary btn-sm" href="/activity/{{$activity->id}}">Ver</a></td>
+            <td> <a class="btn btn-primary btn-sm" href="/activity/{{$activity->id}}/edit">Editar</a></td>
         </tr>
         @empty
         <tr>

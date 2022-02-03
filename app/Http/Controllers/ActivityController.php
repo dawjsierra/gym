@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Activity;
+use App\Models\Sesion;
 
 class ActivityController extends Controller
 {
@@ -27,6 +28,8 @@ class ActivityController extends Controller
     {
         return view('activities.create');
     }
+
+    
 
     /**
      * Store a newly created resource in storage.
@@ -60,9 +63,12 @@ class ActivityController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show( $id )
     {
-        $activities = Activity::all();
+        $activity = Activity::find( $id );
+        $activity->sesion;
+        return view('activities.show',['activity' => $activity]);
+
     }
 
     /**
