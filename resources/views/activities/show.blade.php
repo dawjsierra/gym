@@ -22,14 +22,14 @@
             <td>{{$activity->maxParticipantes}} </td>
         </tr>
         
-        </table>
+        </table >
 
-        <table class="table table-striped">
+        <table class="table table-striped" border=1>
         <tr>
             <th>HORA INICIO</th>
             <th>HORA FIN</th>
         </tr>
-        @forelse ($sesions as $key => $sesion)
+        @forelse ($activity->sesions as $key => $sesion)
         <tr>
             <td>{{$sesion->horaFin}} </td>
             <td>{{$sesion->horaFin}} </td>

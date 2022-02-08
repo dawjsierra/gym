@@ -19,8 +19,22 @@ class SesionController extends Controller
      */
     public function index()
     {
-        $sesion = Sesion::all();
-        return view('sesions.index',['activities' => $sesion]);
+        $sesions = Sesion::all();
+        return view('sesions.index',['sesions' => $sesions]);
+    }
+
+    public function filter(Request $request){
+        $filter = $request->filter;
+        $sesions = Sesion::where('nombre','LIKE',"%$filter%")->get();
+        return $sesions;
+    }
+
+    public function search(){
+
+        $sesions = Sesion::all();
+        $activities = Activity::all();
+        
+        return view('sesions.search',['sesions' => $sesions,'activities' => $activities ] );
     }
 
     public function activity(){
@@ -96,6 +110,7 @@ class SesionController extends Controller
       
         // return redirect('/sesions');
     }
+
 
     /**
      * Display the specified resource.
@@ -174,12 +189,14 @@ class SesionController extends Controller
     public function sign(Request $request){
         $user_id = $request->user_id;
         $sesion_id = $request->sesion_id;
+        $sesion_id->attachUser($user_id);
+
 
         $user = User::find($user_id);
         $sesion = Sesion::find($sesion_id);
-        $user->sesions->attach($sesion_id);
-        $users = User::all();
-        return view('user.index',['users'=>$users]);
+        $sesion->users()->attach($user);
+        $sesions = Sesion::all();
+        return view('sesion.index',['sesions'=>$sesions]);
     }
 
     public function fill_month_NEW( $activity, $arrDias, $fechaInicio, $fechaFin ){

@@ -66,9 +66,13 @@ class ActivityController extends Controller
     public function show( $id )
     {
         $activity = Activity::find( $id );
-        $act_id = $id;
-        $sesion = Sesion::find($act_id);
-        return view('activities.show',['activity' => $activity], ['sesion' => $sesion]);
+        //$activity = Activity::with("sesions")->get();
+       
+        //dd($activity);
+        //  dd($activity->sesions);
+        // $act_id = $id;
+        // $sesion = Sesion::find($act_id);
+        return view('activities.show',['activity' => $activity]);
     }
 
     /**
@@ -80,6 +84,7 @@ class ActivityController extends Controller
     public function edit(Activity $activity)
     {
         return view('activities.edit',['activity' => $activity]);
+    
     }
 
     /**
@@ -89,11 +94,23 @@ class ActivityController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
+    
     public function update(Request $request, Activity $activity)
     {
         $activity -> fill($request->all());
+        
+        // dd($activity);
+        // $activity -> save();
+        
+        // return redirect('/activity');
+
+        // $activity->code = $request->code;
+        // $activity->name = $request->name;
+        // $activity->abreviation = $request->abreviation;
+
         $activity -> save();
-        return redirect('/activities');
+        
+        return redirect('/activity');
     }
 
     /**

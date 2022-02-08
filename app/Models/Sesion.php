@@ -27,8 +27,12 @@ class Sesion extends Model
         return $this->belongsToMany(User::class);
     }
 
+    public function activities(){
+        return $this->belongsTo(Activity::class);
+    }
+
     //add 0802
-    public function sign($user){
+    public function attachUser($user){
         $this->users()->attach($user);
     }
 

@@ -7,7 +7,7 @@
 
 
         <h1>Lista de actividades</h1><br/>
-            <a href="/activities/create" class="btn btn-primary float-right">Nueva</a><br/>
+            <a href="/activity/create" class="btn btn-primary float-right">Nueva</a><br/>
         
 
 
