@@ -25,8 +25,9 @@ class SesionController extends Controller
 
     public function filter(Request $request){
         $filter = $request->filter;
-        $sesions = Sesion::where('nombre','LIKE',"%$filter%")->get();
-        return $sesions;
+
+        $activities = Activity::where('nomActividad','LIKE',"%$filter%")->get();
+        return $activities;
     }
 
     public function search(){

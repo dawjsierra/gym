@@ -6,7 +6,7 @@ $('#formulario').click(function (e) {
     data = $('#filtro').val();
     console.log(data);
 
-    $.get("/studies/filter?filter="+data, function(dataJSON, status){
+    $.get("/sesions/filter?filter="+data, function(dataJSON, status){
         // console.log("Data: " + data + "\nStatus: " + status);
         console.log(dataJSON);
       

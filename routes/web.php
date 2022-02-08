@@ -21,7 +21,7 @@ Route::get('/', function () {
 });
 
 
-Route::get('/sesions/filter', [SesionController::class, 'filter']);
+Route::get('/sesion/filter', [SesionController::class, 'filter']);
 Route::resource('user', UserController::class);
 //Route::get('user', [UserController::class, 'index']);
 // Route::get('user/create', [UserController::class, 'create']);

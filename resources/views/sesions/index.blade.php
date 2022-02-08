@@ -15,7 +15,7 @@
 
 
         <h1>Lista de SESIONES
-            <a href="/activities/create" class="btn btn-primary float-right">
+            <a href="/sesion/create" class="btn btn-primary float-right">
                 Nuevo
             </a>
         </h1>
