@@ -4,9 +4,11 @@ namespace App\Http\Controllers;
 
 use App\Models\Activity;
 use App\Models\Sesion;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Carbon\Carbon;
 use Laravel\Ui\Presets\React;
+use Whoops\Run;
 
 class SesionController extends Controller
 {
@@ -166,6 +168,18 @@ class SesionController extends Controller
 
         // return $sesions;
 
+    }
+
+    //add 0802
+    public function sign(Request $request){
+        $user_id = $request->user_id;
+        $sesion_id = $request->sesion_id;
+
+        $user = User::find($user_id);
+        $sesion = Sesion::find($sesion_id);
+        $user->sesions->attach($sesion_id);
+        $users = User::all();
+        return view('user.index',['users'=>$users]);
     }
 
     public function fill_month_NEW( $activity, $arrDias, $fechaInicio, $fechaFin ){

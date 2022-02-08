@@ -22,4 +22,14 @@ class Sesion extends Model
 
     /* buscar info de Laravel Carbon */
 
+    //add  0802
+    public function users(){
+        return $this->belongsToMany(User::class);
+    }
+
+    //add 0802
+    public function sign($user){
+        $this->users()->attach($user);
+    }
+
 }

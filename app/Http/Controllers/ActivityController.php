@@ -66,9 +66,9 @@ class ActivityController extends Controller
     public function show( $id )
     {
         $activity = Activity::find( $id );
-        $activity->sesion;
-        return view('activities.show',['activity' => $activity]);
-
+        $act_id = $id;
+        $sesion = Sesion::find($act_id);
+        return view('activities.show',['activity' => $activity], ['sesion' => $sesion]);
     }
 
     /**

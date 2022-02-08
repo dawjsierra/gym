@@ -24,21 +24,19 @@
         
         </table>
 
-        <h1>sesiones</h1>
-        <table class="table table-striped" border=1>
+        <table class="table table-striped">
         <tr>
-            <th>Nombre</th>
-            <th>Descripcion</th>
-            <th>Duracion</th>
-            <th>Nº Maximo participantes</th>
+            <th>HORA INICIO</th>
+            <th>HORA FIN</th>
         </tr>
-        
+        @forelse ($sesions as $key => $sesion)
         <tr>
-            <td>{{$activity->nomActividad}} </td>
-            <td>{{$activity->descripcion}} </td>
-            <td>{{$activity->duracion}} </td>
-            <td>{{$activity->maxParticipantes}} </td>
+            <td>{{$sesion->horaFin}} </td>
+            <td>{{$sesion->horaFin}} </td>
         </tr>
+        @empty
+        @endforelse
+        </table>
         
         </table>
     </body>

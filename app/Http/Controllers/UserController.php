@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\User;
+use App\Models\Sesion;
+//add
 
 class UserController extends Controller
 {
@@ -16,7 +18,20 @@ class UserController extends Controller
     {
         $users = User::all();
         return view('users.index',['users' => $users]);
-        
+    }
+
+    //add 0802
+    public function sign(Request $request){
+
+        $user_id = $request->user_id;
+        $sesion_id = $request->sesion_id;
+
+        $user = User::find($user_id);
+        $sesion = Sesion::find($sesion_id);
+        $user->sesions->attach($sesion_id);
+        $users = User::all();
+        return view('user.index',['users'=>$users]);
+
     }
 
     /**
