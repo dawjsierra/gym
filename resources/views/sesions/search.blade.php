@@ -20,8 +20,23 @@
             @foreach($activities as $activity)
                 <option value="{{$activity->id}}">{{$activity->nomActividad}}</option>
             @endforeach
+            @define $activ = {{$activity->id}}
         </select>
-    
+
+        <table border=1>
+            <tr>
+                <th>HORA INICIO</th>
+                <th>HORA FIN</th>
+            </tr>
+            <tr>
+                @foreach($sesions as $sesiones)
+                    @if($sesiones->id_act == $activ)
+                        <td>{{$sesiones->horaInicio}} </td>
+                        <td>{{$sesiones->horaFin}} </td>
+                    @endif
+                @endforeach
+            </tr>
+        </table>
     </form>
 
         </div>
