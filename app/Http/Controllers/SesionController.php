@@ -109,7 +109,8 @@ class SesionController extends Controller
         $this->fill_month_NEW( $activity, $arrDias, $inicio, $fin ) ;
         //dd(Sesion::all());
       
-        // return redirect('/sesions');
+        return redirect('/sesion');
+        //return redirect('/sesions');
     }
 
 
@@ -178,10 +179,9 @@ class SesionController extends Controller
                 // $sesions[] = $sesion;
                 // echo $dia->englishDayOfWeek;
             }
-            
+            return redirect('/sesions');
             // $dates[] = Carbon::createFromDate($fecha->year, $fecha->month, $i, $fecha->hour, $fecha->minute,$fecha->second )->format('Y-m-d h:i:s');
         }
-
         // return $sesions;
 
     }
@@ -200,6 +200,7 @@ class SesionController extends Controller
         return view('sesion.index',['sesions'=>$sesions]);
     }
 
+    
     public function fill_month_NEW( $activity, $arrDias, $fechaInicio, $fechaFin ){
         
         for($i=1; $i < $fechaInicio->daysInMonth + 1; ++$i) {
@@ -221,9 +222,7 @@ class SesionController extends Controller
             
             // $dates[] = Carbon::createFromDate($fecha->year, $fecha->month, $i, $fecha->hour, $fecha->minute,$fecha->second )->format('Y-m-d h:i:s');
         }
-
-        // return $sesions;
-
+        
     }
 
 }
