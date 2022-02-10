@@ -7,7 +7,7 @@
     <body>
         <h1>CREAR SESIONES</h1>
 
-        <form method="POST" action="/sesion">
+        <form method="POST" action="/sesions">
         @csrf
 
             <select name="actividad" id="actividad">

@@ -18,8 +18,8 @@ class CreateSesionsTable extends Migration
             $table->dateTime('horaInicio');
             $table->dateTime('horaFin');
             $table->timestamps();
-            $table->unsignedBigInteger('act_id')->default(1);
-            $table->foreign('act_id')->references('id')->on('activities');
+            $table->unsignedBigInteger('activity_id')->default(1);
+            $table->foreign('activity_id')->references('id')->on('activities');
         });
     }
 

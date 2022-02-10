@@ -20,12 +20,14 @@ class SesionController extends Controller
     public function index()
     {
         $sesions = Sesion::all();
-        return view('sesions.index',['sesions' => $sesions]);
+        $activities = Activity::all();
+        
+        return view('sesions.index',['sesions' => $sesions,'activities' => $activities ] );
     }
 
     public function filter(Request $request){
         $filter = $request->filter;
-
+        
         $activities = Activity::where('nomActividad','LIKE',"%$filter%")->get();
         return $activities;
     }
@@ -38,9 +40,7 @@ class SesionController extends Controller
         return view('sesions.search',['sesions' => $sesions,'activities' => $activities ] );
     }
 
-    public function activity(){
-        return $this->belongsTo(Activity::class);
-    }
+   
 
     /**
      * Show the form for creating a new resource.
@@ -109,7 +109,7 @@ class SesionController extends Controller
         $this->fill_month_NEW( $activity, $arrDias, $inicio, $fin ) ;
         //dd(Sesion::all());
       
-        return redirect('/sesion');
+        return redirect('/sesions');
         //return redirect('/sesions');
     }
 
@@ -173,7 +173,7 @@ class SesionController extends Controller
                 $sesion = new Sesion;
                 $sesion->horaInicio = $horaInicio->format('Y-m-d h:i:s');
                 $sesion->horaFin = $horaFin->format('Y-m-d h:i:s');
-                $sesion->act_id = $activity->id;
+                $sesion->activity_id = $activity->id;
                 $sesion->save();
 
                 // $sesions[] = $sesion;
@@ -213,7 +213,7 @@ class SesionController extends Controller
                 $sesion = new Sesion;
                 $sesion->horaInicio = $horaInicio->format('Y-m-d h:i:s');
                 $sesion->horaFin = $horaFin->format('Y-m-d h:i:s');
-                $sesion->act_id = $activity->id;
+                $sesion->activity_id = $activity->id;
                 $sesion->save();
 
                 // $sesions[] = $sesion;

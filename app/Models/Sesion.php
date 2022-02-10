@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use App\Models\Activity;
 
 class Sesion extends Model
 {
@@ -27,7 +28,7 @@ class Sesion extends Model
         return $this->belongsToMany(User::class);
     }
 
-    public function activities(){
+    public function activity(){
         return $this->belongsTo(Activity::class);
     }
 

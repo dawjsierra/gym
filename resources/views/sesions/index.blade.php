@@ -15,24 +15,32 @@
 
 
         <h1>Lista de SESIONES
-            <a href="/sesion/create" class="btn btn-primary float-right">
+            <a href="/sesions/create" class="btn btn-primary float-right">
                 Nuevo
             </a>
         </h1>
-
+ <!--select con las actividades-->
+ <select name="actividad" id="actividad">
+            @foreach($activities as $activity)
+                <option value="{{$activity->id}}">{{$activity->nomActividad}}</option>
+            @endforeach
+            @define $activ = {{$activity->id}}
+        </select>
 
         <table class="table table-striped">
         <tr>
+            <th>Actividad</th>
             <th>Hora Inicio</th>
             <th>Hora Fin</th>
         </tr>
-        @forelse ($sesions as $key => $sesiones)
+        @forelse ($sesions as $key => $sesion)
+        
         <tr>
-
-            <td>{{$sesiones->horaInicio}} </td>
-            <td>{{$sesiones->horaFin}} </td>
-            <td> <a class="btn btn-primary btn-sm" href="/sesions/{{$sesiones->id}}">Ver</a></td>
-            <td> <a class="btn btn-primary btn-sm" href="/sesions/{{$sesiones->id}}/edit">Editar</a></td>
+            <td>{{$sesion->activity->nomActividad}} </td>
+            <td>{{$sesion->horaInicio}} </td>
+            <td>{{$sesion->horaFin}} </td>
+            <td> <a class="btn btn-primary btn-sm" href="/sesions/{{$sesion->id}}">Ver</a></td>
+            <td> <a class="btn btn-primary btn-sm" href="/sesions/{{$sesion->id}}/edit">Editar</a></td>
         </tr>
         @empty
         <tr>

@@ -21,7 +21,7 @@ Route::get('/', function () {
 });
 
 
-Route::get('/sesion/filter', [SesionController::class, 'filter']);
+
 Route::resource('user', UserController::class);
 //Route::get('user', [UserController::class, 'index']);
 // Route::get('user/create', [UserController::class, 'create']);
@@ -40,8 +40,10 @@ Route::resource('activity', ActivityController::class);
 // Route::put('activity/{id}', [ActivityController::class, 'update']);
 // Route::delete('activity/{id}', [ActivityController::class, 'destroy']);
 
-Route::resource('sesion', SesionController::class);
+Route::get('/sesions/filter', [SesionController::class, 'filter']);
 Route::get('sesions/search', [SesionController::class, 'search']);
+Route::resource('sesions', SesionController::class);
+
 
 
 Auth::routes();

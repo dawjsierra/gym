@@ -18,7 +18,12 @@ class Activity extends Model
     ];
 
     public function sesions() {
-        return $this->hasMany(Sesion::class, 'act_id');
+        return $this->hasMany(Sesion::class);
+    }
+
+    public function __toString()
+    {
+        return $this->nomActividad;
     }
     
 }
