@@ -23,7 +23,20 @@ class UserSeeder extends Seeder
             'peso' => '40',
             'altura' => '190',
             'fechaNac' => '01/07/2000',
-            'sexo' => 'H'
+            'sexo' => 'H',
+            'role' => 'user'
+        ]);
+
+        User::create([
+            'name' => 'admin',
+            'dni' => '99999999P',
+            'email' => 'admin@admin.com',
+            'password' => 'admin',
+            'peso' => '10',
+            'altura' => '200',
+            'fechaNac' => '00/00/00',
+            'sexo' => 'H',
+            'role' => 'admin'
         ]);
     }
 }

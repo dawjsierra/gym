@@ -28,10 +28,10 @@ class User extends Authenticatable
         'dni',
         'email',
         'password',
-        'weight',
-        'height',
-        'birth',
-        'sex',
+        'peso',
+        'altura',
+        'fechaNac',
+        'sexo',
     ];
 
     /**

@@ -32,6 +32,7 @@
             <th>Actividad</th>
             <th>Hora Inicio</th>
             <th>Hora Fin</th>
+            <th>USUARIO</th>
         </tr>
         @forelse ($sesions as $key => $sesion)
         
@@ -39,8 +40,9 @@
             <td>{{$sesion->activity->nomActividad}} </td>
             <td>{{$sesion->horaInicio}} </td>
             <td>{{$sesion->horaFin}} </td>
+            <td>{{$user}} </td>
             <td> <a class="btn btn-primary btn-sm" href="/sesions/{{$sesion->id}}">Ver</a></td>
-            <td> <a class="btn btn-primary btn-sm" href="/sesions/{{$sesion->id}}/edit">Editar</a></td>
+            <td> <a class="btn btn-primary btn-sm" href="/sesions/sign/{{$sesion->id}}">Inscribirse</a></td>
         </tr>
         @empty
         <tr>

@@ -9,9 +9,11 @@ use Illuminate\Http\Request;
 use Carbon\Carbon;
 use Laravel\Ui\Presets\React;
 use Whoops\Run;
+use Illuminate\Support\Facades\Auth;
 
 class SesionController extends Controller
 {
+    protected $user;
     /**
      * Display a listing of the resource.
      *
@@ -21,8 +23,9 @@ class SesionController extends Controller
     {
         $sesions = Sesion::all();
         $activities = Activity::all();
+        $this->user = User::find(Auth::user()->id);
         
-        return view('sesions.index',['sesions' => $sesions,'activities' => $activities ] );
+        return view('sesions.index',['sesions' => $sesions,'activities' => $activities, 'user' => $this->user->name ] );
     }
 
     public function filter(Request $request){
@@ -188,12 +191,13 @@ class SesionController extends Controller
 
     //add 0802
     public function sign(Request $request){
-        $user_id = $request->user_id;
-        $sesion_id = $request->sesion_id;
-        $sesion_id->attachUser($user_id);
+        dd($request);
 
+        $sesion_id = Sesion::find($request->id_sesion);
 
-        $user = User::find($user_id);
+        dd($sesion_id);
+
+        $user = User::find($this->user->id);
         $sesion = Sesion::find($sesion_id);
         $sesion->users()->attach($user);
         $sesions = Sesion::all();

@@ -24,6 +24,7 @@ class CreateUsersTable extends Migration
             $table->string('altura')->default('');;
             $table->string('fechaNac')->default('');;
             $table->string('sexo')->default('');;
+            $table->string('role')->default('user');;
             $table->rememberToken();
             $table->timestamps();
         });
