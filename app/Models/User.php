@@ -18,6 +18,10 @@ class User extends Authenticatable
         return $this->belongsToMany(Sesion::class);
     }
 
+    public function attachSesion($sesion){
+        $this->sesions()->attach($sesion);
+    }
+
     /**
      * The attributes that are mass assignable.
      *

@@ -6,42 +6,41 @@
     </head>
     <body>
         <h1>SESIONES</h1>
-        @extends('layouts.app')
 
-@section('content')
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-8">
 
+        <a href="/sesions/create" class="btn btn-primary float-right">CREAR SESIÓN</a><br/>
 
-        <h1>Lista de SESIONES
-            <a href="/sesions/create" class="btn btn-primary float-right">
-                Nuevo
-            </a>
-        </h1>
- <!--select con las actividades-->
- <select name="actividad" id="actividad">
+        <h1>¡Hola {{$user}}! Aquí mostramos las sesiones</h1><br/>
+        
+        <form method="post" action="sesions/findSelect/">
+            <!--select con las actividades-->
+            <select name="actividad" id="actividad">
             @foreach($activities as $activity)
                 <option value="{{$activity->id}}">{{$activity->nomActividad}}</option>
             @endforeach
-            @define $activ = {{$activity->id}}
-        </select>
+            </select>
+            <input type="submit" value="Buscar">
+        </form>
 
-        <table class="table table-striped">
+        <br/>
+        <table class="table table-striped" style="text-align:center;" border=1>
         <tr>
+            <th>ID</th>
             <th>Actividad</th>
             <th>Hora Inicio</th>
             <th>Hora Fin</th>
-            <th>USUARIO</th>
         </tr>
         @forelse ($sesions as $key => $sesion)
         
         <tr>
+            <td>{{$sesion->id}} </td>
             <td>{{$sesion->activity->nomActividad}} </td>
             <td>{{$sesion->horaInicio}} </td>
             <td>{{$sesion->horaFin}} </td>
-            <td>{{$user}} </td>
-            <td> <a class="btn btn-primary btn-sm" href="/sesions/{{$sesion->id}}">Ver</a></td>
+            <td> <a class="btn btn-primary btn-sm" href="/sesions/show/{{$sesion->id}}">Ver</a></td>
             <td> <a class="btn btn-primary btn-sm" href="/sesions/sign/{{$sesion->id}}">Inscribirse</a></td>
         </tr>
         @empty
@@ -68,7 +67,6 @@
         </div>
     </div>
 </div>
-@endsection
         </form>
     </body>
 </html>

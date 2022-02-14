@@ -14,6 +14,25 @@ use Illuminate\Support\Facades\Auth;
 class SesionController extends Controller
 {
     protected $user;
+
+    public function sign($id){
+
+        /*$sesion = Sesion::find($id);
+        $id_usuario = $this->user->id;
+        $this->user = User::find(Auth::user()->id);
+        dd($this->user->id);
+        $sesions = Sesion::all();*/
+
+
+        $sesion = Sesion::find($id);    //recoge sesion seleccionada
+        $this->user = User::find(Auth::user()->id); //recoge user actual
+        $user = $this->user;
+        $user->attachSesion($sesion);
+        $user->sesions()->attachSesion($sesion);
+
+        return view('sesion.index');
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -23,6 +42,7 @@ class SesionController extends Controller
     {
         $sesions = Sesion::all();
         $activities = Activity::all();
+        $user = User::all();
         $this->user = User::find(Auth::user()->id);
         
         return view('sesions.index',['sesions' => $sesions,'activities' => $activities, 'user' => $this->user->name ] );
@@ -123,9 +143,17 @@ class SesionController extends Controller
      * @param  \App\Models\Sesion  $sesion
      * @return \Illuminate\Http\Response
      */
-    public function show(Sesion $sesion)
+    public function show($id)
     {
-        //
+        $sesion = Sesion::find($id);
+        $activity= Activity::find($sesion->activity_id);
+        
+        return view('sesions.show', ['sesions' => $sesion, 'activity' => $activity]);
+    }
+
+    public function findSelect($request){
+
+        dd($request);
     }
 
     /**
@@ -189,20 +217,8 @@ class SesionController extends Controller
 
     }
 
-    //add 0802
-    public function sign(Request $request){
-        dd($request);
-
-        $sesion_id = Sesion::find($request->id_sesion);
-
-        dd($sesion_id);
-
-        $user = User::find($this->user->id);
-        $sesion = Sesion::find($sesion_id);
-        $sesion->users()->attach($user);
-        $sesions = Sesion::all();
-        return view('sesion.index',['sesions'=>$sesions]);
-    }
+    
+    
 
     
     public function fill_month_NEW( $activity, $arrDias, $fechaInicio, $fechaFin ){

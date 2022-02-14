@@ -42,7 +42,9 @@ Route::resource('activity', ActivityController::class);
 
 Route::get('/sesions/filter', [SesionController::class, 'filter']);
 Route::get('sesions/search', [SesionController::class, 'search']); //'uses' => 'SessionController@search'
-Route::get('/sesions/sign/{id}', [SesionController::class, 'sign'])->middleware('auth');
+Route::get('/sesions/sign/{id}', [SesionController::class, 'sign']);
+Route::get('/sesions/show/{id}', [SesionController::class, 'show']);
+Route::post('sesions/findSelect', [SesionController::class, 'findSelect']);
 Route::get('/users/show/{id}', [SesionController::class, 'show']);
 Route::resource('sesions', SesionController::class);
 
