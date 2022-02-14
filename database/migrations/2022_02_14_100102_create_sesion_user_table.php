@@ -8,11 +8,13 @@ use Carbon\Carbon;
 class CreateSesionUserTable extends Migration
 {
 
-    public static function valorFecha(){
-        $fechaActual = new \DateTime();
-        $fecha = (string) $fechaActual;
-        dd($fecha);
-    }
+    //funcion estatica para devolver la fecha actual en string
+
+    // public static function valorFecha(){
+    //     $fechaActual = new \DateTime();
+    //     $fecha = (string) $fechaActual;
+    //     dd($fecha);
+    // }
     /**
      * Run the migrations.
      *
@@ -26,7 +28,7 @@ class CreateSesionUserTable extends Migration
             $table->id();
             $table->unsignedBigInteger('user_id');
             $table->unsignedBigInteger('sesion_id');
-            //$table->date('date_sign')->default( new \DateTime());
+            //$table->date('date_sign')->default( new \DateTime()); --> fecha actual
             $table->foreign('sesion_id')->references('id')->on('sesions')->onDelete('cascade');
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
             $table->timestamps();
