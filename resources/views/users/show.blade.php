@@ -31,9 +31,28 @@
                 <td>{{$users->role}} </td>
             </tr>
         </table>
+<hr><br>
+        <table class="table table-striped" style="text-align:center;" border=1>
+        <tr>
 
-
-
-        
+            <th>Actividad</th>
+            <th>Hora Inicio</th>
+            <th>Hora Fin</th>
+        </tr>
+        @forelse ($sesions as $key => $sesion)
+    
+  
+        <tr>
+            <td>{{$sesion->activity->nomActividad}} </td>
+            <td>{{$sesion->horaInicio}} </td>
+            <td>{{$sesion->horaFin}} </td>
+        </tr>
+  
+        @empty
+        <tr>
+            <td colspan="3">No hay sesiones registradas</td>
+        </tr>
+        @endforelse
+        </table>
     </body>
 </html>

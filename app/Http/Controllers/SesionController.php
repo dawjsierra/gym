@@ -13,21 +13,16 @@ use Illuminate\Support\Facades\Auth;
 
 class SesionController extends Controller
 {
+    public function __construct(){
+        $this->middleware('auth');
+    }
     protected $user;
 
     public function sign($id){
 
-        /*$sesion = Sesion::find($id);
-        $id_usuario = $this->user->id;
-        $this->user = User::find(Auth::user()->id);
-        dd($this->user->id);
-        $sesions = Sesion::all();*/
-
-
         $sesion = Sesion::find($id);    //recoge sesion seleccionada
         $this->user = User::find(Auth::user()->id); //recoge user actual
         $user = $this->user;
-        $user->attachSesion($sesion);
         $user->sesions()->attach($sesion);
         // $ahora = new \DateTime();
         // dd($ahora->format('d-m-Y H:i:s' ));
@@ -57,12 +52,14 @@ class SesionController extends Controller
         return $activities;
     }
 
-    public function search(){
+    public function search(Request $request){
 
-        $sesions = Sesion::all();
-        $activities = Activity::all();
-        
-        return view('sesions.search',['sesions' => $sesions,'activities' => $activities ] );
+
+        $data = $request->search;
+    
+        $sesions = Sesion::where('id','LIKE',"%$data%")->get();
+        return $sesions;
+        //return view('sesions.search',['sesions' => $sesions ] );
     }
 
    
@@ -118,12 +115,7 @@ class SesionController extends Controller
         $fin->seconds("0");
         // dd($fin);
 
-        // $arrDias = ['Monday','Friday'];
-        $arrDias = $request->dias;
-
-        // $activity = Activity::find( $id );
-        $activity = Activity::find( $request->actividad );
-
+        // $arrDias = ['Monday','Fridaylogout
         // echo $fecha->hour;
         // echo $fecha->minute;
         // echo $fecha->second;
@@ -147,16 +139,15 @@ class SesionController extends Controller
      */
     public function show($id)
     {
+        dd($id);
         $sesion = Sesion::find($id);
         $activity= Activity::find($sesion->activity_id);
         
         return view('sesions.show', ['sesions' => $sesion, 'activity' => $activity]);
     }
 
-    public function findSelect($request){
+   
 
-        dd($request);
-    }
 
     /**
      * Show the form for editing the specified resource.

@@ -22,7 +22,7 @@ Route::get('/', function () {
 
 
 
-Route::resource('user', UserController::class);
+Route::resource('users', UserController::class);
 //Route::get('user', [UserController::class, 'index']);
 // Route::get('user/create', [UserController::class, 'create']);
 // Route::get('user/{id}', [UserController::class, 'show']);
@@ -31,7 +31,7 @@ Route::resource('user', UserController::class);
 // Route::put('user/{id}', [UserController::class, 'update']);
 // Route::delete('user/{id}', [UserController::class, 'destroy']);
 
-Route::resource('activity', ActivityController::class);
+Route::resource('activities', ActivityController::class);
 // Route::get('activity', [ActivityController::class, 'index']);
 // Route::get('activity/create', [ActivityController::class, 'create']);
 // Route::get('activity/{id}', [ActivityController::class, 'show']);
@@ -41,10 +41,9 @@ Route::resource('activity', ActivityController::class);
 // Route::delete('activity/{id}', [ActivityController::class, 'destroy']);
 
 Route::get('/sesions/filter', [SesionController::class, 'filter']);
-Route::get('sesions/search', [SesionController::class, 'search']); //'uses' => 'SessionController@search'
+Route::post('/sesions/search', [SesionController::class, 'search']);
 Route::get('/sesions/sign/{id}', [SesionController::class, 'sign']);
 Route::get('/sesions/show/{id}', [SesionController::class, 'show']);
-Route::post('sesions/findSelect', [SesionController::class, 'findSelect']);
 Route::get('/users/show/{id}', [UserController::class, 'show']);
 Route::resource('sesions', SesionController::class);
 

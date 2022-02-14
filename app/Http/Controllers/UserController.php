@@ -5,10 +5,16 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\User;
 use App\Models\Sesion;
+use App\Models\Activity;
 //add
 
 class UserController extends Controller
 {
+
+    public function __construct(){
+        $this->middleware('auth');
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -64,8 +70,15 @@ class UserController extends Controller
      */
     public function show($id)
     {
+
+        
+        $sesion = Sesion::all();
         $user = User::find($id);
-        return view('users.show',['users' => $user]);
+        $actividad = User::all();
+
+            
+
+        return view('users.show',['users' => $user,'sesions' => $sesion,'activities' => $actividad]);
     }
 
     /**

@@ -15,15 +15,17 @@
 
         <h1>¡Hola {{$user}}! Aquí mostramos las sesiones</h1><br/>
         
-        <form method="post" action="sesions/findSelect/">
+        <form action="" id="search">
             <!--select con las actividades-->
             <select name="actividad" id="actividad">
             @foreach($activities as $activity)
-                <option value="{{$activity->id}}">{{$activity->nomActividad}}</option>
+                <option id="actividad" value="{{$activity->id}}">{{$activity->nomActividad}}</option>
             @endforeach
             </select>
             <input type="submit" value="Buscar">
         </form>
+        <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+        <script src="/js/search.js"></script>
 
         <br/>
         <table class="table table-striped" style="text-align:center;" border=1>
@@ -50,21 +52,7 @@
         @endforelse
         </table>
 
-        <hr>
-        <h2>BUSQUEDA AJAX</h2>
-        <form action="" id="formulario">
-            <input type="text" id="filtro">
-            <input type="submit">
-        </form>
-        <br/>
-        <div id="destinofiltro">
-            destino filtro...
-        </div>
-
-        <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
-        <script src="/js/ejemploajax.js"></script>
-        
-        </div>
+      
     </div>
 </div>
         </form>
