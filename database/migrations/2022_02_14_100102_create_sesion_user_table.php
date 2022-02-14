@@ -3,22 +3,30 @@
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
+use Carbon\Carbon;
 
-class CreateSesionsUsersTable extends Migration
+class CreateSesionUserTable extends Migration
 {
+
+    public static function valorFecha(){
+        $fechaActual = new \DateTime();
+        $fecha = (string) $fechaActual;
+        dd($fecha);
+    }
     /**
      * Run the migrations.
      *
      * @return void
      */
-
-     //add 0802
     public function up()
     {
-        Schema::create('sesions_users', function (Blueprint $table) {
+        
+        Schema::create('sesion_user', function (Blueprint $table) {
+            
             $table->id();
-            $table->unsignedBigInteger('sesion_id');
             $table->unsignedBigInteger('user_id');
+            $table->unsignedBigInteger('sesion_id');
+            //$table->date('date_sign')->default( new \DateTime());
             $table->foreign('sesion_id')->references('id')->on('sesions')->onDelete('cascade');
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
             $table->timestamps();
@@ -32,6 +40,6 @@ class CreateSesionsUsersTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('sesions_users');
+        Schema::dropIfExists('sesion_user');
     }
 }

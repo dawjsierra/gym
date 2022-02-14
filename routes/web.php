@@ -45,7 +45,7 @@ Route::get('sesions/search', [SesionController::class, 'search']); //'uses' => '
 Route::get('/sesions/sign/{id}', [SesionController::class, 'sign']);
 Route::get('/sesions/show/{id}', [SesionController::class, 'show']);
 Route::post('sesions/findSelect', [SesionController::class, 'findSelect']);
-Route::get('/users/show/{id}', [SesionController::class, 'show']);
+Route::get('/users/show/{id}', [UserController::class, 'show']);
 Route::resource('sesions', SesionController::class);
 
 

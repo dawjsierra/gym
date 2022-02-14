@@ -28,9 +28,11 @@ class SesionController extends Controller
         $this->user = User::find(Auth::user()->id); //recoge user actual
         $user = $this->user;
         $user->attachSesion($sesion);
-        $user->sesions()->attachSesion($sesion);
+        $user->sesions()->attach($sesion);
+        // $ahora = new \DateTime();
+        // dd($ahora->format('d-m-Y H:i:s' ));
 
-        return view('sesion.index');
+        return view('/home');
     }
 
     /**
