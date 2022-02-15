@@ -6,43 +6,34 @@
     </head>
     <body>
         <h1>BUSQUEDA SESIONES</h1>
-        @extends('layouts.app')
 
-@section('content')
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-8">
 
-    <form method="POST" action="/sesion">
-
-        <!--select con las actividades-->
-        <select name="actividad" id="actividad">
-            @foreach($activities as $activity)
-                <option value="{{$activity->id}}">{{$activity->nomActividad}}</option>
-            @endforeach
-            @define $activ = {{$activity->id}}
-        </select>
-
-        <table border=1>
-            <tr>
-                <th>HORA INICIO</th>
-                <th>HORA FIN</th>
-            </tr>
-            <tr>
-                @foreach($sesions as $sesiones)
-                    @if($sesiones->id_act == $activ)
-                        <td>{{$sesiones->horaInicio}} </td>
-                        <td>{{$sesiones->horaFin}} </td>
-                    @endif
-                @endforeach
-            </tr>
-        </table>
+    <form method="GET" action="javascript:;">
+        <label>Buscar por nombre actividad</label>
+        <input type="text" id="nombre" name="nombre">
+        <label>Buscar por fecha</label>
+        <input type="date" id="date" name="date">
+        <input id="boton" type="submit"  value="Buscar">
+        
     </form>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+    <script src="/js/search.js"></script>
+
+    <div id="errores">
+        
+    </div>
+
+    <table id="#tabla">
+        
+    </table>
 
         </div>
     </div>
 </div>
-@endsection
        
     </body>
-</html> -->
+</html> 

@@ -23,8 +23,6 @@ class SesionController extends Controller
 
     public function sign($id)
     {
-
-
         $sesion = Sesion::find($id);    //recoge sesion seleccionada
         $this->user = User::find(Auth::user()->id); //recoge user actual
         $user = $this->user;
@@ -56,11 +54,12 @@ class SesionController extends Controller
         return $activities;
     }
 
-    public function search(Request $request)
+    public function search($id)
     {
 
-        $data = $request->search;
-        $sesions = Sesion::where('id', 'LIKE', "%$data%")->get();
+        $data = $id; //le llega el activity_id
+        $sesions = Sesion::where('activity_id', 'LIKE', "%$data%")->get();
+        dd($sesions);
         return $sesions;
     }
 
@@ -87,14 +86,14 @@ class SesionController extends Controller
     public function store(Request $request)
     {
 
-        $validated = $request->validate([
+        // $validated = $request->validate([
 
-            'actividad' => 'required',
-            'dias[]' => 'required',
-            'horaInicio' => 'required',
-            'horaFin' => 'required',
-            'day' => 'required'
-        ]);
+        //     'actividad' => 'required',
+        //     'dias[]' => 'required',
+        //     'horaInicio' => 'required',
+        //     'horaFin' => 'required',
+        //     'day' => 'required'
+        // ]);
 
         /*if($validated->fails()){
             return redirect('sesions/create')
@@ -110,6 +109,8 @@ class SesionController extends Controller
         // $mes = date("m", $dayy);
         // $dia = date("d", $dayy);
         // $anyo = date("y", $dayy);
+
+        // dd($request->day);
 
         $inicio = Carbon::createFromFormat('Y-m-d', $request->day);
         $fin = Carbon::createFromFormat('Y-m-d', $request->day);
@@ -165,7 +166,41 @@ class SesionController extends Controller
         $sesion = Sesion::find($id);
         $activity = Activity::find($sesion->activity_id);
 
-        return view('sesions.show', ['sesions' => $sesion, 'activity' => $activity]);
+        $activity = Activity::with("sesions")->get();
+
+        return view('sesions.show', ['sesions' => $sesion   , 'activity' => $activity]);
+    }
+
+    //FORMULARIO (NOMBRE, FECHA) + TABLA VACIA
+    public function filterView()
+    {
+        $activities = Activity::all();
+        return view('sesions.search', ['activities' => $activities]);
+    }
+
+    //GET: RECIBE NOMBRE / FECHA  DEVUELVE ARRAY SESIONES FILTRADAS
+    public function filtrado( Request $request )
+    {
+
+        $actividad = $request->nombre;
+        $date = $request->date;
+        
+        if( $date != "" ){
+            // $respuesta = Sesion::where('fechaInicio', 'LIKE', "%$date%")->get();
+            $respuesta = Sesion::where('horaInicio', 'LIKE', "%$date%")->get();
+            if(count($respuesta)==0){
+                $respuesta = "No hay sesiones disponibles en la fecha elegida";
+            }
+            
+        }else if( $actividad != "" ){
+            $respuesta = Sesion::where('id', 'LIKE', "%$actividad%")->get();
+            if(count($respuesta)==0){
+                $respuesta = "No hay sesiones disponibles con ese nombre";
+            }
+        }
+
+        // dd($respuesta->toJson());
+        return $respuesta;
     }
 
     // public function findSelect($request){

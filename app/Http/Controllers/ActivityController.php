@@ -118,6 +118,7 @@ class ActivityController extends Controller
 
     public function update(Request $request, Activity $activity)
     {
+        
         $activity->fill($request->all());
 
         // dd($activity);
@@ -131,7 +132,7 @@ class ActivityController extends Controller
 
         $activity->save();
 
-        return view('activities.index');
+        return redirect('/activities');
     }
 
     /**

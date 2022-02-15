@@ -11,9 +11,6 @@
     <title>{{ config('app.name', 'Laravel') }}</title>
 
     <!-- Scripts -->
-
-    <script src="/resources/js/jquery-3.4.1.min.js"></script>
-    <script src="/resources/js/bootstrap.min.js"></script>
     <script src="{{ asset('js/app.js') }}" defer></script>
 
     <!-- Fonts -->
@@ -21,8 +18,6 @@
     <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
 
     <!-- Styles -->
-
-    <link rel="stylesheet" href="/resources/css/bootstrap.min.css" />
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
 </head>
 

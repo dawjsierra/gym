@@ -94,6 +94,7 @@ class UserController extends Controller
         $user = User::find($id);
         $actividad = User::all();
 
+
         //OBTENER IDS DE SESION DE SESION_USER
 
         //obtenemos los datos de la tabla sesion_user(user_id/sesion_id/signdate)

@@ -6,7 +6,7 @@
         <div class="col-md-8">
         <h1>Actualización de estudios</h1>
 
-        <form action="/activity/{{$activity->id}}" method="post">
+        <form action="/activities/{{$activity->id}}" method="post">
         @csrf
         <input type="hidden" name="_method" value="PUT">
         <div>

@@ -1,6 +1,3 @@
-@extends('layouts.app')
-
-@section('content')
 
 <!DOCTYPE html>
 <html>
@@ -18,6 +15,7 @@
             <div class="col-md-8">
 
                 <a href="/sesions/create" class="btn btn-primary float-right">CREAR SESIÓN</a><br />
+                <a href="/sesions/filterView" class="btn btn-primary float-right">BUSCAR SESIONES</a><br />
 
                 <h1>¡Hola {{$user}}! Aquí mostramos las sesiones</h1><br />
 
@@ -28,7 +26,7 @@
                         <option id="actividad" value="{{$activity->id}}">{{$activity->nomActividad}}</option>
                         @endforeach
                     </select>
-                    <input type="submit" value="Buscar">
+                    <input type="submit" value="Buscar" id="boton">
                 </form>
                 <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
                 <script src="/js/search.js"></script>
@@ -57,12 +55,9 @@
                     </tr>
                     @endforelse
                 </table>
-
-
             </div>
         </div>
         </form>
 </body>
 
 </html>
-@endsection

@@ -42,9 +42,12 @@ Route::resource('activities', ActivityController::class);
 // Route::delete('activity/{id}', [ActivityController::class, 'destroy']);
 
 Route::get('/sesions/filter', [SesionController::class, 'filter']);
-Route::post('/sesions/search', [SesionController::class, 'search']);
+
+Route::get('/sesions/search/{id}', [SesionController::class, 'search']);
+
 Route::get('/sesions/sign/{id}', [SesionController::class, 'sign']);
-Route::get('/sesions/show/{id}', [SesionController::class, 'show']);
+Route::get('/sesions/filterView', [SesionController::class, 'filterView']);
+Route::get('/sesions/filtrado', [SesionController::class, 'filtrado']);
 Route::get('/users/show/{id}', [UserController::class, 'show']);
 Route::resource('sesions', SesionController::class);
 Route::get('/activities/edit/{id}', [ActivityController::class, 'edit']);
