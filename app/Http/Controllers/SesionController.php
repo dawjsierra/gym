@@ -16,11 +16,13 @@ class SesionController extends Controller
 {
     protected $user;
 
-    public function __construct(){
+    public function __construct()
+    {
         $this->middleware('auth');
     }
 
-    public function sign($id){
+    public function sign($id)
+    {
 
 
         $sesion = Sesion::find($id);    //recoge sesion seleccionada
@@ -42,25 +44,27 @@ class SesionController extends Controller
         $activities = Activity::all();
         $user = User::all();
         $this->user = User::find(Auth::user()->id);
-        
-        return view('sesions.index',['sesions' => $sesions,'activities' => $activities, 'user' => $this->user->name ] );
+
+        return view('sesions.index', ['sesions' => $sesions, 'activities' => $activities, 'user' => $this->user->name]);
     }
 
-    public function filter(Request $request){
+    public function filter(Request $request)
+    {
         $filter = $request->filter;
-        
-        $activities = Activity::where('nomActividad','LIKE',"%$filter%")->get();
+
+        $activities = Activity::where('nomActividad', 'LIKE', "%$filter%")->get();
         return $activities;
     }
 
-    public function search(Request $request){
+    public function search(Request $request)
+    {
 
         $data = $request->search;
-        $sesions = Sesion::where('id','LIKE',"%$data%")->get();
+        $sesions = Sesion::where('id', 'LIKE', "%$data%")->get();
         return $sesions;
     }
 
-   
+
 
     /**
      * Show the form for creating a new resource.
@@ -70,7 +74,7 @@ class SesionController extends Controller
     public function create()
     {
         $activity = Activity::all();
-        return view('sesions.create',['activities' => $activity]);
+        return view('sesions.create', ['activities' => $activity]);
     }
 
 
@@ -100,18 +104,18 @@ class SesionController extends Controller
 
         // dd($request->all());
 
-        
+
 
         // $dayy = $request->$day;
         // $mes = date("m", $dayy);
         // $dia = date("d", $dayy);
         // $anyo = date("y", $dayy);
 
-        $inicio = Carbon::createFromFormat('Y-m-d', $request->day );
-        $fin = Carbon::createFromFormat('Y-m-d', $request->day );
+        $inicio = Carbon::createFromFormat('Y-m-d', $request->day);
+        $fin = Carbon::createFromFormat('Y-m-d', $request->day);
 
 
-        $arrayHoraIncio = explode(":",$request->horaInicio);
+        $arrayHoraIncio = explode(":", $request->horaInicio);
 
         $HoraIncio = $arrayHoraIncio[0];
         $MinutosIncio = $arrayHoraIncio[1];
@@ -119,9 +123,9 @@ class SesionController extends Controller
         $inicio->minute($MinutosIncio);
         $inicio->seconds("0");
         // dd($inicio);
-       
 
-        $arrayHoraFin = explode(":",$request->horaFin);
+
+        $arrayHoraFin = explode(":", $request->horaFin);
         $HoraFin = $arrayHoraFin[0];
         $MinutosFin = $arrayHoraFin[1];
         $fin->hour($HoraFin);
@@ -133,18 +137,18 @@ class SesionController extends Controller
         $arrDias = $request->dias;
 
         // $activity = Activity::find( $id );
-        $activity = Activity::find( $request->actividad );
+        $activity = Activity::find($request->actividad);
 
         // echo $fecha->hour;
         // echo $fecha->minute;
         // echo $fecha->second;
 
-       
+
 
         // $this->fill_month( $activity, $arrDias, $inicio, $fin ) ;
-        $this->fill_month_NEW( $activity, $arrDias, $inicio, $fin ) ;
+        $this->fill_month_NEW($activity, $arrDias, $inicio, $fin);
         //dd(Sesion::all());
-      
+
         return redirect('/sesions');
         //return redirect('/sesions');
     }
@@ -159,8 +163,8 @@ class SesionController extends Controller
     public function show($id)
     {
         $sesion = Sesion::find($id);
-        $activity= Activity::find($sesion->activity_id);
-        
+        $activity = Activity::find($sesion->activity_id);
+
         return view('sesions.show', ['sesions' => $sesion, 'activity' => $activity]);
     }
 
@@ -177,7 +181,7 @@ class SesionController extends Controller
      */
     public function edit(Sesion $sesion)
     {
-        return view('sesions.edit',['sesion' => $sesion]);
+        return view('sesions.edit', ['sesion' => $sesion]);
     }
 
     /**
@@ -189,8 +193,8 @@ class SesionController extends Controller
      */
     public function update(Request $request, Sesion $sesion)
     {
-        $sesion -> fill($request->all());
-        $sesion -> save();
+        $sesion->fill($request->all());
+        $sesion->save();
         return redirect('/sesions');
     }
 
@@ -205,14 +209,15 @@ class SesionController extends Controller
         //
     }
 
-    public function fill_month( $activity, $arrDias, $fechaInicio, $fechaFin ){
-        
-        for($i=1; $i < $fechaInicio->daysInMonth + 1; ++$i) {
+    public function fill_month($activity, $arrDias, $fechaInicio, $fechaFin)
+    {
 
-            $horaInicio = Carbon::create($fechaInicio->year, $fechaInicio->month, $i, $fechaInicio->hour, $fechaInicio->minute, $fechaInicio->second );
-            $horaFin = Carbon::create($fechaFin->year, $fechaFin->month, $i, $fechaFin->hour, $fechaFin->minute, $fechaFin->second );
+        for ($i = 1; $i < $fechaInicio->daysInMonth + 1; ++$i) {
 
-            if( ( in_array($horaInicio->englishDayOfWeek, $arrDias ) ) ){
+            $horaInicio = Carbon::create($fechaInicio->year, $fechaInicio->month, $i, $fechaInicio->hour, $fechaInicio->minute, $fechaInicio->second);
+            $horaFin = Carbon::create($fechaFin->year, $fechaFin->month, $i, $fechaFin->hour, $fechaFin->minute, $fechaFin->second);
+
+            if ((in_array($horaInicio->englishDayOfWeek, $arrDias))) {
 
                 $sesion = new Sesion;
                 $sesion->horaInicio = $horaInicio->format('Y-m-d h:i:s');
@@ -230,18 +235,19 @@ class SesionController extends Controller
 
     }
 
-    
-    
 
-    
-    public function fill_month_NEW( $activity, $arrDias, $fechaInicio, $fechaFin ){
-        
-        for($i=1; $i < $fechaInicio->daysInMonth + 1; ++$i) {
 
-            $horaInicio = Carbon::create($fechaInicio->year, $fechaInicio->month, $i, $fechaInicio->hour, $fechaInicio->minute, $fechaInicio->second );
-            $horaFin = Carbon::create($fechaFin->year, $fechaFin->month, $i, $fechaFin->hour, $fechaFin->minute, $fechaFin->second );
 
-            if( ( in_array($horaInicio->englishDayOfWeek, $arrDias ) && ( $fechaInicio <= $horaInicio ) ) ){
+
+    public function fill_month_NEW($activity, $arrDias, $fechaInicio, $fechaFin)
+    {
+
+        for ($i = 1; $i < $fechaInicio->daysInMonth + 1; ++$i) {
+
+            $horaInicio = Carbon::create($fechaInicio->year, $fechaInicio->month, $i, $fechaInicio->hour, $fechaInicio->minute, $fechaInicio->second);
+            $horaFin = Carbon::create($fechaFin->year, $fechaFin->month, $i, $fechaFin->hour, $fechaFin->minute, $fechaFin->second);
+
+            if ((in_array($horaInicio->englishDayOfWeek, $arrDias) && ($fechaInicio <= $horaInicio))) {
 
                 $sesion = new Sesion;
                 $sesion->horaInicio = $horaInicio->format('Y-m-d h:i:s');
@@ -252,10 +258,8 @@ class SesionController extends Controller
                 // $sesions[] = $sesion;
                 // echo $dia->englishDayOfWeek;
             }
-            
+
             // $dates[] = Carbon::createFromDate($fecha->year, $fecha->month, $i, $fecha->hour, $fecha->minute,$fecha->second )->format('Y-m-d h:i:s');
         }
-        
     }
-
 }

@@ -1,30 +1,35 @@
+@extends('layouts.app')
+
+@section('content')
+
 <!DOCTYPE html>
 <html>
-    <head>
-        <title>SHOW ACTIVITIES</title>
-        <meta charset="UTF-8">
-    </head>
-    
-    <body>
-        <h1>ACTIVITY: {{$activity->nomActividad}}</h1>
-        <table class="table table-striped" border=1>
+
+<head>
+    <title>SHOW ACTIVITIES</title>
+    <meta charset="UTF-8">
+</head>
+
+<body>
+    <h1>ACTIVITY: {{$activity->nomActividad}}</h1>
+    <table class="table table-striped" border=1>
         <tr>
             <th>Nombre</th>
             <th>Descripcion</th>
             <th>Duracion</th>
             <th>Nº Maximo participantes</th>
         </tr>
-        
+
         <tr>
             <td>{{$activity->nomActividad}} </td>
             <td>{{$activity->descripcion}} </td>
             <td>{{$activity->duracion}} </td>
             <td>{{$activity->maxParticipantes}} </td>
         </tr>
-        
-        </table >
 
-        <table class="table table-striped" border=1>
+    </table>
+
+    <table class="table table-striped" border=1>
         <tr>
             <th>HORA INICIO</th>
             <th>HORA FIN</th>
@@ -36,8 +41,10 @@
         </tr>
         @empty
         @endforelse
-        </table>
-        
-        </table>
-    </body>
+    </table>
+
+    </table>
+</body>
+
 </html>
+@endsection

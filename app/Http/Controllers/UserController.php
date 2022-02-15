@@ -13,7 +13,8 @@ use Illuminate\Support\Facades\Validator;
 class UserController extends Controller
 {
 
-    public function __construct(){
+    public function __construct()
+    {
         $this->middleware('auth');
     }
 
@@ -25,11 +26,12 @@ class UserController extends Controller
     public function index()
     {
         $users = User::all();
-        return view('users.index',['users' => $users]);
+        return view('users.index', ['users' => $users]);
     }
 
     //add 0802
-    public function sign(Request $request){
+    public function sign(Request $request)
+    {
 
         $user_id = $request->user_id;
         $sesion_id = $request->sesion_id;
@@ -38,8 +40,7 @@ class UserController extends Controller
         $sesion = Sesion::find($sesion_id);
         $user->sesions->attach($sesion_id);
         $users = User::all();
-        return view('user.index',['users'=>$users]);
-
+        return view('user.index', ['users' => $users]);
     }
 
     /**
@@ -100,10 +101,10 @@ class UserController extends Controller
         //declaramos array fuera del foreach
         $sesionids = [];
         //foreach que recorra las instancias de el array tabla_reservas
-        foreach($tabla_reservas as $reservas){
+        foreach ($tabla_reservas as $reservas) {
             //de cada instancia, recogemos su sesion_id siempre y cuando el
             //user_id de la tabla sesion_user y el id que está logeado sean el mismo
-            if($reservas->user_id == $user->id){
+            if ($reservas->user_id == $user->id) {
                 //guardamos la sesion_id de reservas, cargando el array declarado antes
                 array_push($sesionids, $reservas->sesion_id);
             }
@@ -115,12 +116,12 @@ class UserController extends Controller
         $sesiones_usuario = [];
 
         //for recorriendo los valores obtenidos en el array sesionids
-        for($i = 0; $i<count($sesionids);$i++){
+        for ($i = 0; $i < count($sesionids); $i++) {
             //cargamos el array anterior con objetos sesion buscandolos por su id
             array_push($sesiones_usuario, Sesion::find($sesionids[$i]));
         }
 
-        return view('users.show',['users' => $user,'sesiones_usuario' => $sesiones_usuario,'activities' => $actividad]);
+        return view('users.show', ['users' => $user, 'sesiones_usuario' => $sesiones_usuario, 'activities' => $actividad]);
     }
 
     /**
@@ -131,7 +132,7 @@ class UserController extends Controller
      */
     public function edit(User $user)
     {
-        return view('users.edit',['user' => $user]);
+        return view('users.edit', ['user' => $user]);
     }
 
     /**
@@ -143,8 +144,8 @@ class UserController extends Controller
      */
     public function update(Request $request, User $user)
     {
-        $user -> fill($request->all());
-        $user -> save();
+        $user->fill($request->all());
+        $user->save();
         return redirect('/users');
     }
 
