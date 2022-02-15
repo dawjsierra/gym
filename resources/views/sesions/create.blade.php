@@ -45,7 +45,7 @@
 
             <br/><hr><br/>
 
-            <label>DIa de inicio</label>
+            <label>DIA DE INICIO DE LA SESION</label>
             <input type="date" id="day" name="day"><br/>
 
             <br/><hr><br/>

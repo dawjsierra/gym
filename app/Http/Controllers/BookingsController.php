@@ -3,6 +3,13 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Activity;
+use App\Models\Sesion;
+use App\Models\User;
+use Carbon\Carbon;
+use Laravel\Ui\Presets\React;
+use Whoops\Run;
+use Illuminate\Support\Facades\Auth;
 
 class BookingsController extends Controller
 {

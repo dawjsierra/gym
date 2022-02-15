@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Activity;
 use App\Models\Sesion;
+use Illuminate\Support\Facades\Validator;
 
 class ActivityController extends Controller
 {
@@ -43,6 +44,21 @@ class ActivityController extends Controller
      */
     public function store(Request $request)
     {
+        $validador = $request->validate([
+
+            'nomActividad' => 'required|unique:activites',
+            'descripcion' => 'max:255',
+            'duracion' => 'required',
+            'maxParticipantes' => 'required'
+        ]);
+
+        /*if($validador->fails()){
+            return redirect('sesions/create')
+                        ->withErrors($validador)
+                        ->withInput();
+        }*/
+
+
         $activity = new Activity;
         //dd($request);
         $nombre = $request->nomActividad;
@@ -88,7 +104,6 @@ class ActivityController extends Controller
     public function edit(Activity $activity)
     {
         return view('activities.edit',['activity' => $activity]);
-    
     }
 
     /**
@@ -114,7 +129,7 @@ class ActivityController extends Controller
 
         $activity -> save();
         
-        return redirect('/activity');
+        return view('activities.index');
     }
 
     /**

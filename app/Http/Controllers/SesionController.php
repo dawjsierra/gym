@@ -10,27 +10,23 @@ use Carbon\Carbon;
 use Laravel\Ui\Presets\React;
 use Whoops\Run;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Validator;
 
 class SesionController extends Controller
 {
     protected $user;
 
-    public function sign($id){
+    public function __construct(){
+        $this->middleware('auth');
+    }
 
-        /*$sesion = Sesion::find($id);
-        $id_usuario = $this->user->id;
-        $this->user = User::find(Auth::user()->id);
-        dd($this->user->id);
-        $sesions = Sesion::all();*/
+    public function sign($id){
 
 
         $sesion = Sesion::find($id);    //recoge sesion seleccionada
         $this->user = User::find(Auth::user()->id); //recoge user actual
         $user = $this->user;
-        $user->attachSesion($sesion);
         $user->sesions()->attach($sesion);
-        // $ahora = new \DateTime();
-        // dd($ahora->format('d-m-Y H:i:s' ));
 
         return view('/home');
     }
@@ -57,12 +53,11 @@ class SesionController extends Controller
         return $activities;
     }
 
-    public function search(){
+    public function search(Request $request){
 
-        $sesions = Sesion::all();
-        $activities = Activity::all();
-        
-        return view('sesions.search',['sesions' => $sesions,'activities' => $activities ] );
+        $data = $request->search;
+        $sesions = Sesion::where('id','LIKE',"%$data%")->get();
+        return $sesions;
     }
 
    
@@ -87,6 +82,22 @@ class SesionController extends Controller
      */
     public function store(Request $request)
     {
+
+        $validated = $request->validate([
+
+            'actividad' => 'required',
+            'dias[]' => 'required',
+            'horaInicio' => 'required',
+            'horaFin' => 'required',
+            'day' => 'required'
+        ]);
+
+        /*if($validated->fails()){
+            return redirect('sesions/create')
+                        ->withErrors($validated)
+                        ->withInput();
+        }*/
+
         // dd($request->all());
 
         
@@ -153,10 +164,10 @@ class SesionController extends Controller
         return view('sesions.show', ['sesions' => $sesion, 'activity' => $activity]);
     }
 
-    public function findSelect($request){
+    // public function findSelect($request){
 
-        dd($request);
-    }
+    //     dd($request);
+    // }
 
     /**
      * Show the form for editing the specified resource.

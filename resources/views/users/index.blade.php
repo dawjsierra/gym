@@ -1,19 +1,13 @@
-@extends('layouts.app')
-
-@section('content')
+<h1>USUARIOS</h1>
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-8">
 
 
-        <h1>Lista de estudios
-            <a href="/users/create" class="btn btn-primary float-right">
-                Nuevo
-            </a>
-        </h1>
+        <a href="/users/create" class="btn btn-primary float-right">CREAR USUARIO</a><br/>
 
 
-        <table class="table table-striped">
+        <table class="table table-striped" border=1>
         <tr>
             <th>Nombre</th>
             <th>DNI</th>
@@ -50,4 +44,3 @@
         </div>
     </div>
 </div>
-@endsection

@@ -6,6 +6,7 @@
     </head>
     
     <body>
+        
         <h1>USUARIO: {{$users->id}}: {{$users->name}}</h1>
         <h3>DATOS DE {{$users->name}}:</h3>
         <table class="table table-striped" border=1>
@@ -36,21 +37,20 @@
         <tr>
 
             <th>Actividad</th>
+            <th>ID SESION</th>
             <th>Hora Inicio</th>
             <th>Hora Fin</th>
         </tr>
-        @forelse ($sesions as $key => $sesion)
-    
-  
+        @forelse ($sesiones_usuario as $key => $sesion)
         <tr>
             <td>{{$sesion->activity->nomActividad}} </td>
+            <td>{{$sesion->id}} </td>
             <td>{{$sesion->horaInicio}} </td>
             <td>{{$sesion->horaFin}} </td>
-        </tr>
-  
+        </tr>   
         @empty
         <tr>
-            <td colspan="3">No hay sesiones registradas</td>
+            <td colspan="3">No hay datos que mostrar</td>
         </tr>
         @endforelse
         </table>

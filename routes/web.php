@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\ActivityController;
 use App\Http\Controllers\SesionController;
+use Illuminate\Support\Facades\DB;
 
 /*
 |--------------------------------------------------------------------------
@@ -46,7 +47,7 @@ Route::get('/sesions/sign/{id}', [SesionController::class, 'sign']);
 Route::get('/sesions/show/{id}', [SesionController::class, 'show']);
 Route::get('/users/show/{id}', [UserController::class, 'show']);
 Route::resource('sesions', SesionController::class);
-
+Route::get('/activities/edit/{id}', [ActivityController::class, 'edit']);
 
 
 Auth::routes();

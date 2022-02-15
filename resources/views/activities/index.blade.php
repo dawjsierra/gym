@@ -1,14 +1,11 @@
-@extends('layouts.app')
+<h1>ACTIVIDADES</h1>
 
-@section('content')
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-8">
 
 
-        <h1>Lista de actividades</h1><br/>
-            <a href="/activity/create" class="btn btn-primary float-right">Nueva</a><br/>
-        
+        <a href="/sesions/create" class="btn btn-primary float-right">CREAR ACTIVIDAD</a><br/>
 
 
         <table class="table table-striped">
@@ -25,21 +22,14 @@
             <td>{{$activity->duracion}} </td>
             <td>{{$activity->maxParticipantes}} </td>
             
-            <td> <a class="btn btn-primary btn-sm" href="/activity/{{$activity->id}}">Ver</a></td>
-            <td> <a class="btn btn-primary btn-sm" href="/activity/{{$activity->id}}/edit">Editar</a></td>
+            <td> <a class="btn btn-primary btn-sm" href="/activities/{{$activity->id}}">Ver</a></td>
+            <td> <a class="btn btn-primary btn-sm" href="/activities/{{$activity->id}}/edit">Editar</a></td>
         </tr>
         @empty
         <tr>
             <td colspan="3">No hay estudios registrados</td>
         </tr>
         @endforelse
-        </table>
-
-
-
-
-
-        </div>
+        </table></div>
     </div>
 </div>
-@endsection
