@@ -1,4 +1,6 @@
+@extends('layouts.app')
 
+@section('content')
 <!DOCTYPE html>
 <html>
 
@@ -17,17 +19,8 @@
                 <a href="/sesions/create" class="btn btn-primary float-right">CREAR SESIÓN</a><br />
                 <a href="/sesions/filterView" class="btn btn-primary float-right">BUSCAR SESIONES</a><br />
 
-                <h1>¡Hola {{$user}}! Aquí mostramos las sesiones</h1><br />
+                <h1>¡Hola {{$user}}! Aquí mostramos todas las sesiones</h1><br />
 
-                <form action="" id="search">
-                    <!--select con las actividades-->
-                    <select name="actividad" id="actividad">
-                        @foreach($activities as $activity)
-                        <option id="actividad" value="{{$activity->id}}">{{$activity->nomActividad}}</option>
-                        @endforeach
-                    </select>
-                    <input type="submit" value="Buscar" id="boton">
-                </form>
                 <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
                 <script src="/js/search.js"></script>
 
@@ -61,3 +54,4 @@
 </body>
 
 </html>
+@endsection

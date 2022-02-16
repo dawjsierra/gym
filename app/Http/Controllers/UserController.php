@@ -8,6 +8,7 @@ use App\Models\Sesion;
 use App\Models\Activity;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Facades\Auth;
 //add
 
 class UserController extends Controller
@@ -26,6 +27,7 @@ class UserController extends Controller
     public function index()
     {
         $users = User::all();
+        $this->users = User::find(Auth::user()->role);
         return view('users.index', ['users' => $users]);
     }
 

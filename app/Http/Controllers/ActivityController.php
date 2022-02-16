@@ -47,11 +47,11 @@ class ActivityController extends Controller
     public function store(Request $request)
     {
         $rules =  [
-            'actividad' => 'required',
-            'dias[]' => 'required',
-            'horaInicio' => 'required',
-            'horaFin' => 'required',
-            'day' => 'required'
+            'nomActividad' => 'required|unique:activities',
+            'duracion' => 'required',
+            'descripcion' => 'required',
+            'maxParticipantes' => 'required',
+
         ];
         $request->validate($rules);
 

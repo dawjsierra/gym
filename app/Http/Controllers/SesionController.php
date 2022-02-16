@@ -27,8 +27,7 @@ class SesionController extends Controller
         $this->user = User::find(Auth::user()->id); //recoge user actual
         $user = $this->user;
         $user->sesions()->attach($sesion);
-
-        return view('/home');
+        return redirect('/users');
     }
 
     /**
@@ -196,13 +195,13 @@ class SesionController extends Controller
         $sesiones = [];
         if( $date != "" ){
             // $respuesta = Sesion::where('fechaInicio', 'LIKE', "%$date%")->get();
-            $respuesta = Sesion::where('horaInicio', 'LIKE', "%$date%")->paginate(5);
+            $respuesta = Sesion::where('horaInicio', 'LIKE', "%$date%")->get();
             if(count($respuesta)==0){
                 $respuesta = "No hay sesiones disponibles en la fecha elegida";
             }
             
         }else if( $nombre != "" &&  $nombre != "&" &&  $nombre != null){
-            $actividad = Activity::where('nomActividad', 'LIKE', "%$nombre%")->paginate(5);
+            $actividad = Activity::where('nomActividad', 'LIKE', "%$nombre%")->get();
             $activ_id = $actividad[0]->id;
 
             if(count($actividad)==0){

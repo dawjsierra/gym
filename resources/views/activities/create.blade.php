@@ -18,17 +18,26 @@
 
                 <div>
                     <label for="descripcion">Descripcion</label>
-                    <input type="text" name="descripcion">
+                    <input type="text" name="descripcion" id="descripcion">
+                    @error('descripcion')
+                        <div class="alert alert-danger">{{$message}}</div>
+                    @enderror
                 </div>
 
                 <div>
                     <label for="duracion">Duracion (minutos)</label>
-                    <input type="text" name="duracion">
+                    <input type="text" name="duracion" id="duracion">
+                    @error('duracion')
+                        <div class="alert alert-danger">{{$message}}</div>
+                    @enderror
                 </div>
 
                 <div>
                     <label for="maxParticipantes">Numero máximo de participantes</label>
-                    <input type="text" name="maxParticipantes">
+                    <input type="text" name="maxParticipantes" id="maxParticipantes">
+                    @error('maxParticipantes')
+                        <div class="alert alert-danger">{{$message}}</div>
+                    @enderror
                 </div>
 
                 <div>
