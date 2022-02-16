@@ -10,15 +10,21 @@ $(document).ready( function(){
         date = $('#date').val();
         // console.log(data);
     
-        $.get("/sesions/filtrado?actividad="+nombre+"&date="+date, function(dataJSON, status){
+        $.get("/sesions/filtrado?nombre="+nombre+"&date="+date, function(dataJSON, status){
             console.log("Data: " + dataJSON + "\nStatus: " + status);
             console.log(dataJSON); 
 
             if(typeof(dataJSON) == "string"){
                 $("#errores").html(dataJSON);
             }else{
-                //hacer un foreach que recorra array y mostrar
-                //resultados con $("#tabla").append(<tr><td>..</tr></td>);
+
+                $("#tabla").empty();
+                
+                
+                    dataJSON.forEach((item)=>{
+                        $("#tabla").append("<tr><td><strong>SESION:</strong>"+item.id+"</td></tr><tr><td><dd><strong>FECHA INICIO:</strong>"+item.horaInicio+"</dd></td></tr><tr><td><dd><strong>FECHA FIN:</strong>"+item.horaFin+"</dd></td></tr><tr><td><dd><strong>ID ACTIVIDAD:</strong>"+item.activity_id+"</dd></td></tr>");
+                    }); 
+                    $("#contenido").css("border","2px solid black");
             }
         });
 

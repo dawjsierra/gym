@@ -10,7 +10,10 @@
                 @csrf
                 <div>
                     <label for="nomActividad">Nombre de la actividad</label>
-                    <input type="text" name="nomActividad">
+                    <input type="text" name="nomActividad" id="nomActividad">
+                    @error('nomActividad')
+                        <div class="alert alert-danger">{{$message}}</div>
+                    @enderror
                 </div>
 
                 <div>

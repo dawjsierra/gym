@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\Activity;
 use App\Models\Sesion;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Facades\Hash;
 
 class ActivityController extends Controller
 {
@@ -45,23 +46,17 @@ class ActivityController extends Controller
      */
     public function store(Request $request)
     {
-        $validador = $request->validate([
-
-            'nomActividad' => 'required|unique:activities',
-            'descripcion' => 'max:255',
-            'duracion' => 'required',
-            'maxParticipantes' => 'required'
-        ]);
-
-        /*if($validador->fails()){
-            return redirect('sesions/create')
-                        ->withErrors($validador)
-                        ->withInput();
-        }*/
+        $rules =  [
+            'actividad' => 'required',
+            'dias[]' => 'required',
+            'horaInicio' => 'required',
+            'horaFin' => 'required',
+            'day' => 'required'
+        ];
+        $request->validate($rules);
 
 
         $activity = new Activity;
-        //dd($request);
         $nombre = $request->nomActividad;
         $duracion = $request->duracion;
         $descripcion = $request->descripcion;
@@ -74,9 +69,6 @@ class ActivityController extends Controller
         $activity->save();
 
         return redirect('/activities');
-
-
-        //return redirect('/activities');
     }
 
     /**

@@ -86,6 +86,15 @@ class SesionController extends Controller
     public function store(Request $request)
     {
 
+        $rules =  [
+            'actividad' => 'required',
+            'dias[]' => 'required',
+            'horaInicio' => 'required',
+            'horaFin' => 'required',
+            'day' => 'required'
+        ];
+        $request->validate($rules);
+
         // $validated = $request->validate([
 
         //     'actividad' => 'required',
@@ -182,24 +191,27 @@ class SesionController extends Controller
     public function filtrado( Request $request )
     {
 
-        $actividad = $request->nombre;
+        $nombre = $request->nombre;
         $date = $request->date;
-        
+        $sesiones = [];
         if( $date != "" ){
             // $respuesta = Sesion::where('fechaInicio', 'LIKE', "%$date%")->get();
-            $respuesta = Sesion::where('horaInicio', 'LIKE', "%$date%")->get();
+            $respuesta = Sesion::where('horaInicio', 'LIKE', "%$date%")->paginate(5);
             if(count($respuesta)==0){
                 $respuesta = "No hay sesiones disponibles en la fecha elegida";
             }
             
-        }else if( $actividad != "" ){
-            $respuesta = Sesion::where('id', 'LIKE', "%$actividad%")->get();
-            if(count($respuesta)==0){
+        }else if( $nombre != "" &&  $nombre != "&" &&  $nombre != null){
+            $actividad = Activity::where('nomActividad', 'LIKE', "%$nombre%")->paginate(5);
+            $activ_id = $actividad[0]->id;
+
+            if(count($actividad)==0){
                 $respuesta = "No hay sesiones disponibles con ese nombre";
+            }else{
+                $respuesta = Sesion::where('activity_id', 'LIKE', "%$activ_id%")->get();
             }
         }
-
-        // dd($respuesta->toJson());
+        
         return $respuesta;
     }
 

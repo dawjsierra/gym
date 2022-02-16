@@ -16,10 +16,13 @@
     <form method="POST" action="/sesions">
         @csrf
 
-        <select name="actividad" id="actividad">
+        <select name="actividad" id="actividad" value="{{old ('nomActividad')}}">
             @foreach($activities as $activity)
             <option value="{{$activity->id}}">{{$activity->nomActividad}}</option>
             @endforeach
+            @error('actividad')
+                <div class="alert alert-danger">{{$message}}</div>
+            @enderror
         </select>
 
         <br />
@@ -44,19 +47,28 @@
         <hr><br />
 
         <label>HORA INICIO</label>
-        <input type="time" id="horaInicio" name="horaInicio"><br />
+        <input type="time" id="horaInicio" name="horaInicio" value="{{old ('horaInicio')}}"><br />
+        @error('horaInicio')
+                <div class="alert alert-danger">{{$message}}</div>
+        @enderror
 
         <br />
         <hr><br />
 
         <label>HORA FIN</label>
-        <input type="time" id="horaFin" name="horaFin"><br />
+        <input type="time" id="horaFin" name="horaFin" value="{{old ('horaFIn')}}"><br />
+        @error('horaFIn')
+                <div class="alert alert-danger">{{$message}}</div>
+        @enderror
 
         <br />
         <hr><br />
 
         <label>DIA DE INICIO DE LA SESION</label>
-        <input type="date" id="day" name="day"><br />
+        <input type="date" id="day" name="day" value="{{old ('day')}}"><br />
+        @error('day')
+                <div class="alert alert-danger">{{$message}}</div>
+        @enderror
 
         <br />
         <hr><br />
