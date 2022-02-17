@@ -36,6 +36,7 @@
         <input type="text" id="nombre" name="nombre">
         <label>Buscar por fecha</label>
         <input type="date" id="date" name="date">
+        <input type="hidden" id="user_id" name="user_id" value="{{$activity->id}}">
         <input id="boton" type="submit"  value="Buscar">
         
     </form>

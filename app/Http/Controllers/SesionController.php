@@ -21,10 +21,10 @@ class SesionController extends Controller
         $this->middleware('auth');
     }
 
-    public function sign($id)
+    public function sign(Request $request)
     {
-        $sesion = Sesion::find($id);    //recoge sesion seleccionada
-        $this->user = User::find(Auth::user()->id); //recoge user actual
+        $sesion = Sesion::find($request->sesion_id);    //recoge sesion seleccionada
+        $this->user = User::find($request->user_id); //recoge user actual
         $user = $this->user;
         $user->sesions()->attach($sesion);
         return redirect('/users');
@@ -183,7 +183,8 @@ class SesionController extends Controller
     public function filterView()
     {
         $activities = Activity::all();
-        return view('sesions.search', ['activities' => $activities]);
+        $user = User::find(Auth::user()->id);
+        return view('sesions.search', ['activities' => $activities, 'user' => $user]);
     }
 
     //GET: RECIBE NOMBRE / FECHA  DEVUELVE ARRAY SESIONES FILTRADAS
