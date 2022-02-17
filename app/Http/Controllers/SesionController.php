@@ -85,14 +85,14 @@ class SesionController extends Controller
     public function store(Request $request)
     {
 
-        $rules =  [
-            'actividad' => 'required',
-            'dias[]' => 'required',
-            'horaInicio' => 'required',
-            'horaFin' => 'required',
-            'day' => 'required'
-        ];
-        $request->validate($rules);
+        // $rules =  [
+        //     'actividad' => 'required',
+        //     'dias[]' => 'required',
+        //     'horaInicio' => 'required',
+        //     'horaFin' => 'required',
+        //     'day' => 'required'
+        // ];
+        // $request->validate($rules);
 
         // $validated = $request->validate([
 
@@ -176,7 +176,7 @@ class SesionController extends Controller
 
         $activity = Activity::with("sesions")->get();
 
-        return view('sesions.show', ['sesions' => $sesion   , 'activity' => $activity]);
+        return view('sesions.show', ['sesions' => $sesion, 'activity' => $activity]);
     }
 
     //FORMULARIO (NOMBRE, FECHA) + TABLA VACIA
@@ -188,30 +188,29 @@ class SesionController extends Controller
     }
 
     //GET: RECIBE NOMBRE / FECHA  DEVUELVE ARRAY SESIONES FILTRADAS
-    public function filtrado( Request $request )
+    public function filtrado(Request $request)
     {
 
         $nombre = $request->nombre;
         $date = $request->date;
         $sesiones = [];
-        if( $date != "" ){
+        if ($date != "") {
             // $respuesta = Sesion::where('fechaInicio', 'LIKE', "%$date%")->get();
             $respuesta = Sesion::where('horaInicio', 'LIKE', "%$date%")->get();
-            if(count($respuesta)==0){
+            if (count($respuesta) == 0) {
                 $respuesta = "No hay sesiones disponibles en la fecha elegida";
             }
-            
-        }else if( $nombre != "" &&  $nombre != "&" &&  $nombre != null){
+        } else if ($nombre != "" &&  $nombre != "&" &&  $nombre != null) {
             $actividad = Activity::where('nomActividad', 'LIKE', "%$nombre%")->get();
             $activ_id = $actividad[0]->id;
 
-            if(count($actividad)==0){
+            if (count($actividad) == 0) {
                 $respuesta = "No hay sesiones disponibles con ese nombre";
-            }else{
+            } else {
                 $respuesta = Sesion::where('activity_id', 'LIKE', "%$activ_id%")->get();
             }
         }
-        
+
         return $respuesta;
     }
 

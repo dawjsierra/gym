@@ -36,7 +36,7 @@
 
                     <tr>
                         <td>{{$sesion->id}} </td>
-                        <td>{{$sesion->activity->nomActividad}} </td>
+
                         <td>{{$sesion->horaInicio}} </td>
                         <td>{{$sesion->horaFin}} </td>
                         <td> <a class="btn btn-primary btn-sm" href="/sesions/show/{{$sesion->id}}">Ver</a></td>

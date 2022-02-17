@@ -21,21 +21,51 @@
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
 
     <style>
-        #prueba{
+        body {
+            height: 1000px;
+            background: rgb(255, 255, 255);
+            background: linear-gradient(0deg, rgba(255, 255, 255, 1) 0%, rgba(249, 250, 255, 1) 73%, rgba(103, 133, 255, 1) 100%);
+        }
+
+        #contenido {
             display: flex;
-            flex-direction:row;
-        }
-        #prueba a{
-            border-right: 1px black solid;
-            padding-right: 5px;
+            flex-direction: row;
+
         }
 
-        #app{
-            width:100%;
+        #usuario {
+            width: 400px;
+            text-align: center;
+            color: white;
+            text-shadow: 4px 4px 4px black;
         }
 
-        #papaprueba{
-            width:100%;
+        #contenido a {
+            border: 1px black solid;
+            border-radius: 5px;
+            padding: 5px;
+            margin-left: 5px;
+            text-decoration: none;
+            background-color: lightblue;
+            color: black;
+        }
+
+        #contenido a:hover {
+            background-color: cadetblue;
+        }
+
+        #contenido p {
+            position: absolute;
+            text-align: center;
+        }
+
+
+        #app {
+            width: 100%;
+        }
+
+        #contenedor {
+            width: 100%;
             display: flex;
             align-items: center;
             justify-content: center;
@@ -50,44 +80,41 @@
                 <a class="navbar-brand" href="{{ url('/') }}">
                     {{ config('app.name', 'Laravel') }}
                 </a>
-              
 
-                <div class="collapse navbar-collapse" id="papaprueba">
-                    <!-- Left Side Of Navbar -->
-                    <ul class="navbar-nav me-auto">
 
-                    </ul>
+                <div class="collapse navbar-collapse" id="contenedor">
 
                     <!-- Right Side Of Navbar -->
                     <ul class="navbar-nav ms-auto">
                         <!-- Authentication Links -->
                         @guest
                         @if (Route::has('login'))
-                            <a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>
+                        <a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>
                         @endif
 
                         @if (Route::has('register'))
-                            <a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a>
+                        <a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a>
                         @endif
                         @else
-                        <div id="prueba">
-                            <a href="#">
-                                {{ Auth::user()->name }}
-                            </a>
-                            
-                                <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault();
-                                                     document.getElementById('logout-form').submit();">
-                                    {{ __('Logout') }}
-                                </a>
+                        <p id="usuario"> saludos usuario {{ Auth::user()->name }} </p>
+                        <div id="contenido">
 
-                                <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
-                                    @csrf
-                                </form>
-                                <a href="/users" class="btn btn-primary float-right">Ver usuario</a><br />
-                                <a href="/sesions" class="btn btn-primary float-right">Ver sesiones</a><br />
-                                <a href="/activities" class="btn btn-primary float-right">Ver actividades</a><br />
-                            </div>
-                        
+
+
+
+                            <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault();
+                                                     document.getElementById('logout-form').submit();">
+                                {{ __('Logout') }}
+                            </a>
+
+                            <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                                @csrf
+                            </form>
+                            <a href="/users" class="btn btn-primary float-right">Ver usuario</a><br />
+                            <a href="/sesions" class="btn btn-primary float-right">Ver sesiones</a><br />
+                            <a href="/activities" class="btn btn-primary float-right">Ver actividades</a><br />
+                        </div>
+
                         @endguest
                     </ul>
                 </div>
