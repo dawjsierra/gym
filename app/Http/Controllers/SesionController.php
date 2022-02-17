@@ -85,14 +85,14 @@ class SesionController extends Controller
     public function store(Request $request)
     {
 
-        // $rules =  [
-        //     'actividad' => 'required',
-        //     'dias[]' => 'required',
-        //     'horaInicio' => 'required',
-        //     'horaFin' => 'required',
-        //     'day' => 'required'
-        // ];
-        // $request->validate($rules);
+        $rules =  [
+            'actividad' => 'required',
+            'dias' => 'required',
+            'horaInicio' => 'required',
+            'horaFin' => 'required',
+            'day' => 'required'
+        ];
+        $request->validate($rules);
 
         // $validated = $request->validate([
 

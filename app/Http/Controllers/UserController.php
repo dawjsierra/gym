@@ -63,36 +63,7 @@ class UserController extends Controller
      */
     public function store(Request $request)
     {
-        /*$rules =  [
-            'name' => 'required',
-            'dni' => 'required|unique:users|max:9',
-            'email' => 'required',
-            'weight' => 'required|max:3',
-            'height' => 'required|min:3',
-            'sex' => 'required'
-        ];
-        $request->validate($rules);*/
-
-        $user = new User;
-        $name = $request->name;
-        $dni = $request->dni;
-        $email = $request->email;
-        $password = Hash::make($request->$password);
-        $peso = $request->weight;
-        $altura = $request->height;
-        $fechaNac = $request->birth;
-        $sex = $request->sexo;
-
-        $user->name = $name;
-        $user->dni = $dni;
-        $user->email = $email;
-        $user->password = $password;
-        $user->peso = $peso;
-        $user->altura = $altura;
-        $user->fechaNac = $fechaNac;
-        $user->sexo = $sex;
-        $user->save();
-
+        
         return redirect('/users');
     }
 
