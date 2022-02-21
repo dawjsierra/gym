@@ -11,6 +11,10 @@
 
 <body>
 
+            @if ( $rolusuario == "admin" )
+            <a href="/users" class="btn btn-primary float-right">Ver todos los usuarios</a><br />
+            @endif
+
     <h1>USUARIO: {{$users->id}}: {{$users->name}}</h1>
     <h3>DATOS DE {{$users->name}}:</h3>
     <table class="table table-striped" border=1>

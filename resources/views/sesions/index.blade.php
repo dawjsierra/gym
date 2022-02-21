@@ -16,8 +16,10 @@
         <div class="row justify-content-center">
             <div class="col-md-8">
 
+            @if ( $rolusuario == "admin" )
                 <a href="/sesions/create" class="btn btn-primary float-right">CREAR SESIÓN</a><br />
-                <a href="/sesions/filterView" class="btn btn-primary float-right">BUSCAR SESIONES</a><br />
+            @endif
+       
 
                 <h1>¡Hola {{$user}}! Aquí mostramos todas las sesiones</h1><br />
 
@@ -39,7 +41,7 @@
 
                         <td>{{$sesion->horaInicio}} </td>
                         <td>{{$sesion->horaFin}} </td>
-                        <td> <a class="btn btn-primary btn-sm" href="/sesions/show/{{$sesion->id}}">Ver</a></td>
+                        <td> <a class="btn btn-primary btn-sm" href="/sesions/{{$sesion->id}}">Ver</a></td>
                         <td> <a class="btn btn-primary btn-sm" href="/sesions/sign/{{$sesion->id}}">Inscribirse</a></td>
                     </tr>
                     @empty

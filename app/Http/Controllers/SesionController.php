@@ -21,12 +21,15 @@ class SesionController extends Controller
         $this->middleware('auth');
     }
 
-    public function sign(Request $request)
+    // public function sign(Request $request)
+    public function sign($id)
     {
-        $sesion = Sesion::find($request->sesion_id);    //recoge sesion seleccionada
-        $this->user = User::find($request->user_id); //recoge user actual
-        $user = $this->user;
+        $sesion = Sesion::find($id);    //recoge sesion seleccionada
+        // $this->user = User::find($request->user_id); //recoge user actual
+        // $user = $this->user;
+        $user = Auth::user();
         $user->sesions()->attach($sesion);
+        
         return redirect('/users');
     }
 
@@ -41,8 +44,9 @@ class SesionController extends Controller
         $activities = Activity::all();
         $user = User::all();
         $this->user = User::find(Auth::user()->id);
+        $rolsito = Auth::user()->role;
 
-        return view('sesions.index', ['sesions' => $sesions, 'activities' => $activities, 'user' => $this->user->name]);
+        return view('sesions.index', ['sesions' => $sesions, 'activities' => $activities, 'user' => $this->user->name, 'rolusuario' => $rolsito]);
     }
 
     public function filter(Request $request)
@@ -175,8 +179,8 @@ class SesionController extends Controller
         $activity = Activity::find($sesion->activity_id);
 
         $activity = Activity::with("sesions")->get();
-
-        return view('sesions.show', ['sesions' => $sesion, 'activity' => $activity]);
+        dd($activity);
+        return view('sesions.show', ['sesions' => $sesion, 'actividad' => $activity]);
     }
 
     //FORMULARIO (NOMBRE, FECHA) + TABLA VACIA

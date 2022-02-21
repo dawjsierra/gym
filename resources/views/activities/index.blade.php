@@ -27,7 +27,11 @@
                     <td>{{$activity->maxParticipantes}} </td>
 
                     <td> <a class="btn btn-primary btn-sm" href="/activities/{{$activity->id}}">Ver</a></td>
-                    <td> <a class="btn btn-primary btn-sm" href="/activities/{{$activity->id}}/edit">Editar</a></td>
+                    @if ( $rolusuario == "admin" )
+                     <td> <a class="btn btn-primary btn-sm" href="/activities/{{$activity->id}}/edit">Editar</a></td>
+                    @endif
+                   
+                    
                 </tr>
                 @empty
                 <tr>

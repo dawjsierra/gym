@@ -27,6 +27,8 @@ class UserController extends Controller
     public function index()
     {
         $users = User::all();
+    
+       
         $this->users = User::find(Auth::user()->role);
         return view('users.index', ['users' => $users]);
     }
@@ -79,6 +81,7 @@ class UserController extends Controller
         $user = User::find($id);
         $actividad = User::all();
 
+        $rolsito = Auth::user()->role;
 
         //OBTENER IDS DE SESION DE SESION_USER
 
@@ -107,7 +110,7 @@ class UserController extends Controller
             array_push($sesiones_usuario, Sesion::find($sesionids[$i]));
         }
 
-        return view('users.show', ['users' => $user, 'sesiones_usuario' => $sesiones_usuario, 'activities' => $actividad]);
+        return view('users.show', ['users' => $user, 'sesiones_usuario' => $sesiones_usuario, 'activities' => $actividad, 'rolusuario' => $rolsito]);
     }
 
     /**

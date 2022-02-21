@@ -8,14 +8,13 @@
 
 
             <!-- <a href="/users/create" class="btn btn-primary float-right">CREAR USUARIO</a><br /> -->
-
+            
 
             <table class="table table-striped" border=1>
                 <tr>
                     <th>Nombre</th>
                     <th>DNI</th>
                     <th>Email</th>
-                    <th>Contraseña</th>
                     <th>Peso</th>
                     <th>Altura</th>
                     <th>Fecha Nacimiento</th>
@@ -26,7 +25,6 @@
                     <td>{{$users->name}} </td>
                     <td>{{$users->dni}} </td>
                     <td>{{$users->email}} </td>
-                    <td>{{$users->password}} </td>
                     <td>{{$users->peso}} </td>
                     <td>{{$users->altura}} </td>
                     <td>{{$users->fechaNac}} </td>

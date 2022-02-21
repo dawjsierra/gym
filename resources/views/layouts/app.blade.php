@@ -110,8 +110,11 @@
                             <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
                                 @csrf
                             </form>
-                            <a href="/users" class="btn btn-primary float-right">Ver usuario</a><br />
+                           
+                            
+                            <a href="/users/show/{{ Auth::user()->id }}" class="btn btn-primary float-right">Ver Perfil</a><br />
                             <a href="/sesions" class="btn btn-primary float-right">Ver sesiones</a><br />
+                            <a href="/sesions/filterView" class="btn btn-primary float-right">Buscar sesiones</a><br />
                             <a href="/activities" class="btn btn-primary float-right">Ver actividades</a><br />
                         </div>
 

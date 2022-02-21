@@ -7,6 +7,7 @@ use App\Models\Activity;
 use App\Models\Sesion;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Auth;
 
 class ActivityController extends Controller
 {
@@ -23,7 +24,9 @@ class ActivityController extends Controller
     public function index()
     {
         $activities = Activity::all();
-        return view('activities.index', ['activities' => $activities]);
+        $rolsito = Auth::user()->role;
+
+        return view('activities.index', ['activities' => $activities, 'rolusuario' => $rolsito]);
     }
 
     /**

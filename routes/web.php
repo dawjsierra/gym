@@ -45,7 +45,8 @@ Route::get('/sesions/filter', [SesionController::class, 'filter']);
 
 Route::get('/sesions/search/{id}', [SesionController::class, 'search']);
 
-Route::get('/sesions/sign', [SesionController::class, 'sign']);
+// Route::get('/sesions/sign', [SesionController::class, 'sign']);
+Route::get('/sesions/sign/{id}', [SesionController::class, 'sign']);
 Route::get('/sesions/filterView', [SesionController::class, 'filterView']);
 Route::get('/sesions/filtrado', [SesionController::class, 'filtrado']);
 Route::get('/users/show/{id}', [UserController::class, 'show']);
