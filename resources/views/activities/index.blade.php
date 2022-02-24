@@ -8,8 +8,10 @@
     <div class="row justify-content-center">
         <div class="col-md-8">
 
+        @if ( $rolusuario == "admin" )
+        <a href="/activities/create" class="btn btn-primary float-right">CREAR ACTIVIDAD</a><br />
+                    @endif
 
-            <a href="/activities/create" class="btn btn-primary float-right">CREAR ACTIVIDAD</a><br />
 
 
             <table class="table table-striped">

@@ -27,6 +27,12 @@
             background: linear-gradient(0deg, rgba(255, 255, 255, 1) 0%, rgba(249, 250, 255, 1) 73%, rgba(103, 133, 255, 1) 100%);
         }
 
+        a{
+            width: 120px;
+            height: 40px;
+            text-align: center;
+            vertical-align: middle;
+        }
         #contenido {
             display: flex;
             flex-direction: row;
@@ -34,10 +40,11 @@
         }
 
         #usuario {
-            width: 400px;
-            text-align: center;
+  
+            text-align: left;
             color: white;
             text-shadow: 4px 4px 4px black;
+            
         }
 
         #contenido a {
@@ -62,8 +69,10 @@
 
         #app {
             width: 100%;
+     
         }
 
+       
         #contenedor {
             width: 100%;
             display: flex;
@@ -75,11 +84,9 @@
 
 <body>
     <div id="app">
-        <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
+        <nav class="navbar navbar-expand-md ">
             <div class="container">
-                <a class="navbar-brand" href="{{ url('/') }}">
-                    {{ config('app.name', 'Laravel') }}
-                </a>
+
 
 
                 <div class="collapse navbar-collapse" id="contenedor">
@@ -96,13 +103,13 @@
                         <a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a>
                         @endif
                         @else
-                        <p id="usuario"> saludos usuario {{ Auth::user()->name }} </p>
+                        <h2 id="usuario"> saludos usuario {{ Auth::user()->name }} </h2>
                         <div id="contenido">
 
 
 
 
-                            <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault();
+                            <a  href="{{ route('logout') }}" onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">
                                 {{ __('Logout') }}
                             </a>

@@ -23,7 +23,8 @@ Route::get('/', function () {
 
 
 
-Route::resource('users', UserController::class);
+Route::resource('users', UserController::class)->middleware('role');;
+// Route::resource('users', UserController::class);
 //Route::get('user', [UserController::class, 'index']);
 // Route::get('user/create', [UserController::class, 'create']);
 // Route::get('user/{id}', [UserController::class, 'show']);
@@ -31,6 +32,10 @@ Route::resource('users', UserController::class);
 // Route::get('user/{id}/edit', [UserController::class, 'edit']);
 // Route::put('user/{id}', [UserController::class, 'update']);
 // Route::delete('user/{id}', [UserController::class, 'destroy']);
+
+// Route::get('/users', function(){
+//     return view('home');
+// })
 
 Route::resource('activities', ActivityController::class);
 // Route::get('activity', [ActivityController::class, 'index']);
