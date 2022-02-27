@@ -1,6 +1,8 @@
 <?php
 
+namespace Carbon;
 namespace App\Http\Controllers;
+
 
 use App\Models\Activity;
 use App\Models\Sesion;
@@ -9,6 +11,7 @@ use Illuminate\Http\Request;
 use Carbon\Carbon;
 use Laravel\Ui\Presets\React;
 use Whoops\Run;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
 
@@ -62,7 +65,7 @@ class SesionController extends Controller
 
         $data = $id; //le llega el activity_id
         $sesions = Sesion::where('activity_id', 'LIKE', "%$data%")->get();
-        dd($sesions);
+        //dd($sesions);
         return $sesions;
     }
 
@@ -128,6 +131,7 @@ class SesionController extends Controller
         $fin = Carbon::createFromFormat('Y-m-d', $request->day);
 
 
+
         $arrayHoraIncio = explode(":", $request->horaInicio);
 
         $HoraIncio = $arrayHoraIncio[0];
@@ -177,10 +181,25 @@ class SesionController extends Controller
     {
         $sesion = Sesion::find($id);
         $activity = Activity::find($sesion->activity_id);
+        $arraysesiones = [];
+        
 
-        $activity = Activity::with("sesions")->get();
-        dd($activity);
-        return view('sesions.show', ['sesions' => $sesion, 'actividad' => $activity]);
+        //mostrar numero de usuarios apuntados en esa sesión
+        $sql = DB::table('sesion_user')->get();
+        
+        for($i = 0; $i < count($sql); $i++){
+            $idsesion = strval($sql[$i]->sesion_id);
+            dd($id);
+            if($idsesion == $id){
+                array_push($arraysesiones, $sql[$i]->user_id);
+            }
+        }
+
+        dd($arraysesiones);
+        
+        // where('horaInicio', 'LIKE', "%$date%")->get();
+
+        return view('sesions.show', ['sesions' => $sesion, 'activity' => $activity]);
     }
 
     //FORMULARIO (NOMBRE, FECHA) + TABLA VACIA
