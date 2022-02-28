@@ -23,13 +23,14 @@ Route::get('/', function () {
 
 
 Route::post('user/create', [UserController::class, 'create']);
+Route::get('user/{id}/edit', [UserController::class, 'edit']);
 Route::resource('users', UserController::class)->middleware('role');;
 // Route::resource('users', UserController::class);
 //Route::get('user', [UserController::class, 'index']);
 
 // Route::get('user/{id}', [UserController::class, 'show']);
 // Route::post('user', [UserController::class, 'store']);
-// Route::get('user/{id}/edit', [UserController::class, 'edit']);
+ Route::get('user/{id}/edit', [UserController::class, 'edit']);
 // Route::put('user/{id}', [UserController::class, 'update']);
 // Route::delete('user/{id}', [UserController::class, 'destroy']);
 
