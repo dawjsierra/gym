@@ -14,23 +14,6 @@
 <body>
     <h1>BUSQUEDA SESIONES</h1>
 
-    <table border="1">
-        ACTIVIDADES
-        <tr>
-            <th>ID</th>
-            <th>NOMBRE</th>
-        </tr>
-        <tr>
-            @foreach($activities as $activity)
-        <tr>
-            <td>{{$activity->id}}</td>
-            <td>{{$activity->nomActividad}}</td>
-        </tr>
-        @endforeach
-        </tr>
-    </table>
-    <br><br>
-    <hr><br><br>
 
     <div class="container">
         <div class="row justify-content-center">
@@ -38,7 +21,17 @@
 
                 <form method="GET" action="javascript:;">
                     <label>Buscar por nombre actividad</label>
-                    <input type="text" id="nombre" name="nombre">
+
+                
+                        <select name="nombre" id="nombre" value="{{old ('nomActividad')}}">
+                            @foreach($activities as $activity)
+                            <option value="{{$activity->nomActividad}}">{{$activity->nomActividad}}</option>
+                            @endforeach
+                            @error('actividad')
+                                <div class="alert alert-danger">{{$message}}</div>
+                            @enderror
+                        </select>
+
                     <label>Buscar por fecha</label>
                     <input type="date" id="date" name="date">
                     <input type="hidden" id="user_id" name="user_id" value="{{$activity->id}}">

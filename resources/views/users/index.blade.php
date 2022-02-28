@@ -7,9 +7,6 @@
         <div class="col-md-8">
 
 
-            <!-- <a href="/users/create" class="btn btn-primary float-right">CREAR USUARIO</a><br /> -->
-            
-
             <table class="table table-striped" border=1>
                 <tr>
                     <th>Nombre</th>

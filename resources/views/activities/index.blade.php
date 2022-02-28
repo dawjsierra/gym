@@ -9,7 +9,8 @@
         <div class="col-md-8">
 
         @if ( $rolusuario == "admin" )
-        <a href="/activities/create" class="btn btn-primary float-right">CREAR ACTIVIDAD</a><br />
+        <div class="row">    <a href="/activities/create" class="btn btn-primary float-right">CREAR ACTIVIDAD</a><br /> </div>
+    
                     @endif
 
 

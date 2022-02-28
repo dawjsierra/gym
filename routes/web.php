@@ -18,15 +18,15 @@ use Illuminate\Support\Facades\DB;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('home');
 });
 
 
-
+Route::post('user/create', [UserController::class, 'create']);
 Route::resource('users', UserController::class)->middleware('role');;
 // Route::resource('users', UserController::class);
 //Route::get('user', [UserController::class, 'index']);
-// Route::get('user/create', [UserController::class, 'create']);
+
 // Route::get('user/{id}', [UserController::class, 'show']);
 // Route::post('user', [UserController::class, 'store']);
 // Route::get('user/{id}/edit', [UserController::class, 'edit']);

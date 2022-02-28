@@ -32,8 +32,7 @@ class SesionController extends Controller
         // $user = $this->user;
         $user = Auth::user();
         $user->sesions()->attach($sesion);
-        
-        return redirect('/users');
+        return redirect('/sesions');
     }
 
     /**
@@ -186,20 +185,20 @@ class SesionController extends Controller
 
         //mostrar numero de usuarios apuntados en esa sesión
         $sql = DB::table('sesion_user')->get();
-        
+        $usuariosInscritos = 0;
         for($i = 0; $i < count($sql); $i++){
             $idsesion = strval($sql[$i]->sesion_id);
-            dd($id);
+          
             if($idsesion == $id){
+                $usuariosInscritos++;
                 array_push($arraysesiones, $sql[$i]->user_id);
             }
         }
-
-        dd($arraysesiones);
+     
         
         // where('horaInicio', 'LIKE', "%$date%")->get();
 
-        return view('sesions.show', ['sesions' => $sesion, 'activity' => $activity]);
+        return view('sesions.show', ['sesions' => $sesion, 'activity' => $activity, 'usuariosInscritos' => $usuariosInscritos]);
     }
 
     //FORMULARIO (NOMBRE, FECHA) + TABLA VACIA

@@ -23,6 +23,10 @@ $(document).ready( function(){
                 
                     dataJSON.forEach((item)=>{
                         $("#tabla").append("<tr><td><strong>SESION:</strong>"+item.id+"</td></tr><tr><td><dd><strong>FECHA INICIO:</strong>"+item.horaInicio+"</dd></td></tr><tr><td><dd><strong>FECHA FIN:</strong>"+item.horaFin+"</dd></td></tr><tr><td><dd><strong>ID ACTIVIDAD:</strong>"+item.activity_id+"</dd></td></tr>");
+                       
+ 
+                        
+                        
                     }); 
                     $("#contenido").css("border","2px solid black");
             }

@@ -17,14 +17,16 @@
             <th>Actividad</th>
             <th>Inicio</th>
             <th>Fin</th>
+            <th>Usuarios inscritos</th>
         </tr>
 
         <tr>
             <td>{{$activity->nomActividad}} </td>
             <td>{{$sesions->horaInicio}} </td>
             <td>{{$sesions->horaFin}} </td>
+            <td>{{$usuariosInscritos}} </td>
         </tr>
-
+        
     </table>
 </body>
 

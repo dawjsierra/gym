@@ -9,6 +9,8 @@ use App\Models\Activity;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
+
 //add
 
 class UserController extends Controller
@@ -65,7 +67,42 @@ class UserController extends Controller
      */
     public function store(Request $request)
     {
-        
+        $rules =  [
+            'name' => 'required',
+            'dni' => 'required',
+            'email' => 'required',
+            'password' => 'required',
+            'weight' => 'required',
+            'height' => 'required',
+            'birth' => 'required',
+            'sexo' => 'required'
+
+        ];
+        $request->validate($rules);
+
+
+        $user = new User;
+        $name = $request->name;
+        $dni = $request->dni;
+        $email = $request->email;
+        $password = $request->password;
+        $password = Hash::make($password);
+        $peso = $request->weight;
+        $altura = $request->height;
+        $fechaNac = $request->birth;
+        $sexo = $request->sexo;
+
+        $user->name = $name;
+        $user->dni = $dni;
+        $user->email = $email;
+        $user->password = $password;
+        $user->peso = $peso;
+        $user->altura = $altura;
+        $user->fechaNac = $fechaNac;
+        $user->sexo = $sexo;
+       
+        $user->save();
+
         return redirect('/users');
     }
 

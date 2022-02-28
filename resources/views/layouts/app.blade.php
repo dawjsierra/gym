@@ -32,6 +32,14 @@
             height: 40px;
             text-align: center;
             vertical-align: middle;
+            text-decoration: none;
+           
+        }
+
+        .botones{
+            color: white;
+        border: solid 1px white;
+        margin-left: 10px;
         }
         #contenido {
             display: flex;
@@ -96,11 +104,11 @@
                         <!-- Authentication Links -->
                         @guest
                         @if (Route::has('login'))
-                        <a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>
+                        <a class="nav-link btn btn-primary botones" href="{{ route('login') }}">{{ __('Login') }}</a>
                         @endif
 
                         @if (Route::has('register'))
-                        <a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a>
+                        <a class="nav-link btn btn-primary botones" href="{{ route('register') }}">{{ __('Register') }}</a>
                         @endif
                         @else
                         <h2 id="usuario"> saludos usuario {{ Auth::user()->name }} </h2>

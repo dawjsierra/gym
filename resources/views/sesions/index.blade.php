@@ -17,7 +17,8 @@
             <div class="col-md-8">
 
             @if ( $rolusuario == "admin" )
-                <a href="/sesions/create" class="btn btn-primary float-right">CREAR SESIÓN</a><br />
+            <div class="row"> <a href="/sesions/create" class="btn btn-primary float-right">CREAR SESIÓN</a><br /></div>
+                
             @endif
        
 
@@ -30,7 +31,7 @@
                 <table class="table table-striped" style="text-align:center;" border=1>
                     <tr>
                         <th>ID</th>
-                        <th>Actividad</th>
+                        <th>Nombre actividad</th>
                         <th>Hora Inicio</th>
                         <th>Hora Fin</th>
                     </tr>
@@ -38,7 +39,7 @@
 
                     <tr>
                         <td>{{$sesion->id}} </td>
-
+                        <td>{{$sesion->activity->nomActividad }} </td>
                         <td>{{$sesion->horaInicio}} </td>
                         <td>{{$sesion->horaFin}} </td>
                         <td> <a class="btn btn-primary btn-sm" href="/sesions/{{$sesion->id}}">Ver</a></td>

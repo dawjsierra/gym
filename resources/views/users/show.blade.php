@@ -12,7 +12,11 @@
 <body>
 
             @if ( $rolusuario == "admin" )
-            <a href="/users" class="btn btn-primary float-right">Ver todos los usuarios</a><br />
+            <div class="row"> 
+            <a href="/users" class="btn btn-primary ">VER A LOS USUARIOS</a><br />
+            <a href="/users/create" class="btn btn-primary ">CREAR USUARIO</a><br />
+            </div>
+     
             @endif
 
     <h1>USUARIO: {{$users->id}}: {{$users->name}}</h1>

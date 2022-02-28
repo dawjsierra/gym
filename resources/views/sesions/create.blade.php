@@ -11,11 +11,12 @@
 </head>
 
 <body>
+<div class="container-fluid"> 
     <h1>CREAR SESIONES</h1>
 
     <form method="POST" action="/sesions">
         @csrf
-
+    
         <select name="actividad" id="actividad" value="{{old ('nomActividad')}}">
             @foreach($activities as $activity)
             <option value="{{$activity->id}}">{{$activity->nomActividad}}</option>
@@ -74,6 +75,7 @@
         <hr><br />
         <input type="submit" value="CREAR">
     </form>
+    </div>
 </body>
 
 </html>
